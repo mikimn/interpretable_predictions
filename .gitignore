@@ -6,6 +6,7 @@ data/
 __pycache__/
 *.py[cod]
 *$py.class
+*.py.lock
 
 # C extensions
 *.so

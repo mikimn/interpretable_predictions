@@ -45,7 +45,7 @@ def get_z_stats(z=None, mask=None):
     :param mask: mask in [B, T]
     :return:
     """
-
+    mask = mask.byte()
     z = torch.where(mask, z, z.new_full([1], 1e2))
 
     num_0 = (z == 0.).sum().item()

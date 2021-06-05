@@ -1,4 +1,6 @@
-tqdm
-torch>=1.2
-torchtext
+tqdm<4.50.0
+torch==1.7.1
+transformers==4.5.1
+datasets==1.7.0
 tensorflow>=1.14
+wandb

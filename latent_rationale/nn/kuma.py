@@ -56,14 +56,14 @@ class RV:
     def entropy(self):
         raise NotImplementedError('Implement me')
 
-    def pdf(self, x):
+    def pdf(self, x) -> torch.Tensor:
 
         if isinstance(x, float):
             x = self.params()[0].new_tensor([x])
 
         return self.log_pdf(x).exp()
 
-    def cdf(self, x):
+    def cdf(self, x) -> torch.Tensor:
 
         if isinstance(x, float):
             x = self.params()[0].new_tensor([x])

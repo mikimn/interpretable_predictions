@@ -7,7 +7,7 @@ from ..common.util import get_z_stats
 # noinspection DuplicatedCode
 class RationaleLoss(nn.Module):
     def __init__(self,
-                 selection: float = 1.,
+                 selection: float = 0.5,
                  lasso: float = 0.,
                  lagrange_alpha: float = 0.5,
                  lagrange_lr: float = 0.05,
@@ -129,16 +129,16 @@ class RationaleLoss(nn.Module):
         # pre-compute for regularizers: pdf(0.)
         l0, pdf0, pdf_nonzero = self._l0_regularize(z_dists, mask)
 
-        # c0_hat, c0 = self._l0_relax(l0)
-        c0 = l0
+        c0_hat, c0 = self._l0_relax(l0)
+        # c0 = l0
 
         with torch.no_grad():
             optional["cost0_l0"] = l0.item()
             optional["target0"] = self.selection
-            # optional["c0_hat"] = c0_hat.item()
+            optional["c0_hat"] = c0_hat.item()
             optional["c0"] = c0.item()  # same as moving average
             optional["lambda0"] = self.lambda0.item()
-            # optional["lagrangian0"] = (self.lambda0 * c0_hat).item()
+            optional["lagrangian0"] = (self.lambda0 * c0_hat).item()
             optional["a"] = z_dists[0].a.mean().item()
             optional["b"] = z_dists[0].b.mean().item()
 
@@ -151,16 +151,16 @@ class RationaleLoss(nn.Module):
         # number of transitions per sentence normalized by length
         # TODO Number of transitions per premise/hypothesis??
         lasso_cost = self._l1_regularize(pdf0, pdf_nonzero, mask)
-        # c1_hat, c1 = self._l1_relax(lasso_cost)
-        c1 = lasso_cost
+        c1_hat, c1 = self._l1_relax(lasso_cost)
+        # c1 = lasso_cost
 
         with torch.no_grad():
             optional["cost1_lasso"] = lasso_cost.item()
             optional["target1"] = self.lasso
-            # optional["c1_hat"] = c1_hat.item()
+            optional["c1_hat"] = c1_hat.item()
             optional["c1"] = c1.item()  # same as moving average
             optional["lambda1"] = self.lambda1.item()
-            # optional["lagrangian1"] = (self.lambda1 * c1_hat).item()
+            optional["lagrangian1"] = (self.lambda1 * c1_hat).item()
 
         lambda1 = self.lambda1.squeeze().detach()
         loss += lambda1 * c1.squeeze()

@@ -37,6 +37,18 @@ cd interpretable_predictions
 ./download_data.sh
 ```
 
+## Notebooks
+
+Install dependencies
+```shell
+pip install -r requirements.notebook.txt
+```
+
+Install `venv` kernel:
+```shell
+python -m ipykernel install --user --name=venv
+```
+
 ## Tensorboard
 
 You can folllow training progress for all experiments using tensorboard.

@@ -3,7 +3,8 @@ from dataclasses import dataclass
 import torch
 from torch import nn
 from transformers import BertConfig, is_wandb_available
-from transformers.modeling_outputs import SequenceClassifierOutput, BaseModelOutputWithPoolingAndCrossAttentions
+from transformers.modeling_outputs import SequenceClassifierOutput, BaseModelOutputWithPoolingAndCrossAttentions, \
+    BaseModelOutputWithPastAndCrossAttentions
 from transformers.models.bert import BertPreTrainedModel
 from transformers.models.bert.modeling_bert import BertEmbeddings, BertEncoder, BertPooler
 
@@ -51,10 +52,18 @@ class BertModelWithRationale(BertPreTrainedModel):
         self.encoder = BertEncoder(config)
 
         self.pooler = BertPooler(config) if add_pooling_layer else None
+        self.rationale_type = config.rationale_type
+        assert self.rationale_type in {'all', 'premise', 'hypothesis', 'none', 'supervised'}
+        config_dict = config.to_dict()
+        if 'rationale_strategy' in config_dict:
+            self.rationale_strategy = config.rationale_strategy
+        else:
+            self.rationale_strategy = 'independent'
+        assert self.rationale_strategy in {'independent', 'contextual'}
 
         self.init_weights()
 
-    def _forward_z_layer(self, z_dist, embeddings, mask=None):
+    def _forward_z_layer_independent(self, z_dist, embeddings, mask=None):
         h = embeddings
         if self.training:
             if hasattr(z_dist, "rsample"):
@@ -180,21 +189,39 @@ class BertModelWithRationale(BertPreTrainedModel):
 
         # TODO Added by @mikimn
         # mask = attention_mask
+        fill_mask = None
         if rationale_mask is None:
-            rationale_mask = attention_mask  # By default, allow all tokens to be masked
-        if rationale_mask.sum() == 0:
+            if self.rationale_type == 'all':
+                rationale_mask = attention_mask  # By default, allow all tokens to be masked
+                fill_mask = torch.zeros_like(rationale_mask)
+            elif self.rationale_type == 'premise':
+                rationale_mask = attention_mask - token_type_ids  # Mask premise
+                fill_mask = token_type_ids  # Preserve hypothesis
+            elif self.rationale_type == 'hypothesis':
+                rationale_mask = token_type_ids  # Mask hypothesis
+                fill_mask = attention_mask - token_type_ids  # Preserve premise
+
+        if rationale_mask is None or rationale_mask.sum() == 0:
             z_dist = None
             z = None
         else:
-            z_dist = self.z_layer(embedding_output)
-            z = self._forward_z_layer(z_dist, embedding_output, rationale_mask)
+            if self.rationale_strategy == 'independent':
+                z_dist = self.z_layer(embedding_output)
+                mask = attention_mask
+                z = self._forward_z_layer_independent(z_dist, embedding_output, mask)
 
-        if z is not None:
-            z_mask = (rationale_mask.float() * z).unsqueeze(-1)  # [B, T, 1]
-            # [B, T, H] x [B, T, 1] -> [B, T, H]
-            embedding_output = embedding_output * z_mask
+                z_mask = (mask.float() * z + fill_mask).unsqueeze(-1)  # [B, T, 1]
+                z_mask = z_mask.clamp(min=0.0, max=1.0)
+                # TODO Split attention mask and rationale mask
+                # [B, T, H] x [B, T, 1] -> [B, T, H]
+                embedding_output = embedding_output * z_mask
 
-        encoder_outputs = self.encoder(
+        # TODO Remove
+        # [B, T, H] x [B, T, 1] => [B, T, H]
+        # Hypothesis-only embedding
+        # embedding_output = embedding_output * token_type_ids.unsqueeze(-1)
+
+        encoder_outputs: BaseModelOutputWithPastAndCrossAttentions = self.encoder(
             embedding_output,
             attention_mask=extended_attention_mask,
             head_mask=head_mask,
@@ -206,6 +233,7 @@ class BertModelWithRationale(BertPreTrainedModel):
             output_hidden_states=output_hidden_states,
             return_dict=return_dict,
         )
+        # [B, T, H]
         sequence_output = encoder_outputs[0]
         pooled_output = self.pooler(sequence_output) if self.pooler is not None else None
 
@@ -233,7 +261,8 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
         self.bert = BertModelWithRationale(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
-        self.rationale_loss = RationaleLoss()
+        self.rationale_loss = RationaleLoss(lambda_init=config.lambda_init)
+        self.mask_metrics = None
 
         self.init_weights()
 
@@ -308,9 +337,7 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
                     optional["pc"] = num_c / float(total)
                     optional["p1"] = num_1 / float(total)
                     optional["selected"] = optional["pc"] + optional["p1"]
-                    # TODO Remove
-                    if is_wandb_available():
-                        wandb.log(optional)
+                    self.mask_metrics = optional
                 # print(optional)
             elif self.config.problem_type == "multi_label_classification":
                 # loss_fct = BCEWithLogitsLoss()

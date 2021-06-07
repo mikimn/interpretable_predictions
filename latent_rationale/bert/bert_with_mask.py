@@ -207,14 +207,15 @@ class BertModelWithRationale(BertPreTrainedModel):
         else:
             if self.rationale_strategy == 'independent':
                 z_dist = self.z_layer(embedding_output)
-                mask = attention_mask
-                z = self._forward_z_layer_independent(z_dist, embedding_output, mask)
+                z = self._forward_z_layer_independent(z_dist, embedding_output, rationale_mask)
 
-                z_mask = (mask.float() * z + fill_mask).unsqueeze(-1)  # [B, T, 1]
-                z_mask = z_mask.clamp(min=0.0, max=1.0)
+                # Ignore padding
+                z_mask = (attention_mask.float() * z).unsqueeze(-1)  # [B, T, 1]
+                # z_mask = z_mask.clamp(min=0.0, max=1.0)
                 # TODO Split attention mask and rationale mask
                 # [B, T, H] x [B, T, 1] -> [B, T, H]
                 embedding_output = embedding_output * z_mask
+                z_mask = z_mask.squeeze(-1)
 
         # TODO Remove
         # [B, T, H] x [B, T, 1] => [B, T, H]
@@ -247,7 +248,7 @@ class BertModelWithRationale(BertPreTrainedModel):
             hidden_states=encoder_outputs.hidden_states,
             attentions=encoder_outputs.attentions,
             cross_attentions=encoder_outputs.cross_attentions,
-            z=z,
+            z=z_mask,
             z_dist=z_dist
         )
 
@@ -261,7 +262,7 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
         self.bert = BertModelWithRationale(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
-        self.rationale_loss = RationaleLoss(lambda_init=config.lambda_init)
+        self.rationale_loss = RationaleLoss(selection=1., lambda_init=config.lambda_init)
         self.mask_metrics = None
 
         self.init_weights()

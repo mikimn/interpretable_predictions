@@ -7,7 +7,7 @@ from ..common.util import get_z_stats
 # noinspection DuplicatedCode
 class RationaleLoss(nn.Module):
     def __init__(self,
-                 selection: float = 0.5,
+                 selection: float = 1.,
                  lasso: float = 0.,
                  lagrange_alpha: float = 0.5,
                  lagrange_lr: float = 0.05,

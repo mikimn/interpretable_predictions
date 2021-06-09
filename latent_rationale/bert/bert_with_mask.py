@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+import numpy as np
 import torch
 from torch import nn
 from transformers import BertConfig, is_wandb_available
@@ -26,6 +27,8 @@ class BaseModelOutputWithPoolingCrossAttentionsAndZDist(BaseModelOutputWithPooli
 @dataclass
 class RationaleSequenceClassifierOutput(SequenceClassifierOutput):
     z: torch.Tensor = None
+    precision: float = None
+    recall: float = None
 
 
 class BertModelWithRationale(BertPreTrainedModel):
@@ -201,21 +204,22 @@ class BertModelWithRationale(BertPreTrainedModel):
                 rationale_mask = token_type_ids  # Mask hypothesis
                 fill_mask = attention_mask - token_type_ids  # Preserve premise
 
-        if rationale_mask is None or rationale_mask.sum() == 0:
-            z_dist = None
-            z = None
-        else:
-            if self.rationale_strategy == 'independent':
-                z_dist = self.z_layer(embedding_output)
-                z = self._forward_z_layer_independent(z_dist, embedding_output, rationale_mask)
+        z_dist = None
+        z = None
+        if rationale_mask is not None and rationale_mask.sum() != 0 and \
+                self.rationale_strategy == 'independent':
+            z_dist = self.z_layer(embedding_output)
+            z = self._forward_z_layer_independent(z_dist, embedding_output, rationale_mask)
 
-                # Ignore padding
-                z_mask = (attention_mask.float() * z).unsqueeze(-1)  # [B, T, 1]
-                # z_mask = z_mask.clamp(min=0.0, max=1.0)
-                # TODO Split attention mask and rationale mask
-                # [B, T, H] x [B, T, 1] -> [B, T, H]
-                embedding_output = embedding_output * z_mask
-                z_mask = z_mask.squeeze(-1)
+            # Ignore padding
+            z_mask = (attention_mask.float() * z).unsqueeze(-1)  # [B, T, 1]
+            # z_mask = z_mask.clamp(min=0.0, max=1.0)
+            # TODO Split attention mask and rationale mask
+            # [B, T, H] x [B, T, 1] -> [B, T, H]
+            embedding_output = embedding_output * z_mask
+            z_mask = z_mask.squeeze(-1)
+        else:
+            z_mask = torch.ones_like(attention_mask)
 
         # TODO Remove
         # [B, T, H] x [B, T, 1] => [B, T, H]
@@ -253,6 +257,67 @@ class BertModelWithRationale(BertPreTrainedModel):
         )
 
 
+def extract_rationale(sentence, flag_token='*'):
+    if isinstance(sentence, list):
+        return [extract_rationale(s, flag_token) for s in sentence]
+    candidate = ' '.join([w[1:-1] for w in sentence.split() if w[0] == flag_token and w[-1] == flag_token])
+    if len(candidate) == 0:
+        return sentence
+    return candidate
+
+
+def rationale_precision_or_recall(input_ids, z, h1, h2, flag_id, flag_token='*', precision=True):
+    if flag_id is None:
+        return -1
+    # h1: p1 <*> p2 <*> ... pt
+    # h2: <*> h1 <*> h2 ... pm
+    # z:
+    # [CLS] p1 p2 ... pt [SEP] h1 h2 ... pm [SEP]
+    prec_list = []
+    for inp, z_pred, premise_highlight, hypothesis_highlight in zip(input_ids, z, h1, h2):
+        z_pred = z_pred.cpu().detach().numpy()
+        z_ref = [0]  # Start [CLS] is assumed unmasked
+        inside_highlight = False
+        for i, prem_token in enumerate(premise_highlight):
+            if prem_token == flag_id:
+                inside_highlight = not inside_highlight
+                # start_index = -1 if start_index >= 0 else i
+                continue
+            # 1 while masking, 0 otherwise
+            z_ref.append(int(inside_highlight))
+        z_ref.append(0)  # [SEP] assumed unmasked
+        inside_highlight = False
+        for i, hyp_token in enumerate(hypothesis_highlight):
+            if hyp_token == flag_id:
+                inside_highlight = not inside_highlight
+                # start_index = -1 if start_index >= 0 else i
+                continue
+            # 1 while masking, 0 otherwise
+            z_ref.append(int(inside_highlight))
+        z_ref.append(0)  # [SEP] assumed unmasked
+        num_pads = (inp == 0).sum()  # Count [PAD] tokens
+        z_ref += [0] * num_pads
+        if len(z_ref) != len(z_pred):
+            # FIXME Ignores samples for which the alignment fails
+            continue
+        dot_prod = np.array(z_ref).dot(z_pred)
+        normalizer = z_pred.sum() if precision else sum(z_ref)
+        if normalizer == 0:
+            prec_list.append(1.)
+        else:
+            prec_list.append(dot_prod / normalizer)
+
+    return np.average(prec_list)
+
+
+def rationale_precision(input_ids, z, h1, h2, flag_id, flag_token='*'):
+    return rationale_precision_or_recall(input_ids, z, h1, h2, flag_id, flag_token, precision=True)
+
+
+def rationale_recall(input_ids, z, h1, h2, flag_id, flag_token='*'):
+    return rationale_precision_or_recall(input_ids, z, h1, h2, flag_id, flag_token, precision=False)
+
+
 class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
     def __init__(self, config: BertConfig):
         super().__init__(config)
@@ -262,8 +327,15 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
         self.bert = BertModelWithRationale(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
-        self.rationale_loss = RationaleLoss(selection=1., lambda_init=config.lambda_init)
+        self.rationale_loss = RationaleLoss(selection=1., lambda_sparsity=config.lambda_init)
         self.mask_metrics = None
+        self.mask_metrics_count = 0
+
+        config_dict = config.to_dict()
+        if 'highlight_token' in config_dict:
+            self.highlight_token = config.highlight_token
+        else:
+            self.highlight_token = 1008  # Quickfix (1008 == '*' for BertTokenizer)
 
         self.init_weights()
 
@@ -280,6 +352,9 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
             output_hidden_states=None,
             return_dict=None,
             rationale_mask=None,
+            premise_highlight=None,
+            hypothesis_highlight=None,
+            aggregate_mask_metrics=True
     ):
         r"""
         labels (:obj:`torch.LongTensor` of shape :obj:`(batch_size,)`, `optional`):
@@ -338,7 +413,15 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
                     optional["pc"] = num_c / float(total)
                     optional["p1"] = num_1 / float(total)
                     optional["selected"] = optional["pc"] + optional["p1"]
-                    self.mask_metrics = optional
+                    if aggregate_mask_metrics:
+                        if self.mask_metrics is None:
+                            self.mask_metrics = optional
+                            self.mask_metrics_count = 1
+                        else:
+                            self.mask_metrics = {
+                                k: v + self.mask_metrics[k] for k, v in optional.items()
+                            }
+                            self.mask_metrics_count += 1
                 # print(optional)
             elif self.config.problem_type == "multi_label_classification":
                 # loss_fct = BCEWithLogitsLoss()
@@ -348,10 +431,19 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
             output = (logits,) + outputs[2:]
             return ((loss,) + output) if loss is not None else output
 
+        if not self.training:
+            precision = rationale_precision(input_ids, z, hypothesis_highlight, premise_highlight, self.highlight_token)
+            recall = rationale_recall(input_ids, z, hypothesis_highlight, premise_highlight, self.highlight_token)
+        else:
+            precision = None
+            recall = None
+
         return RationaleSequenceClassifierOutput(
             loss=loss,
             logits=logits,
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,
-            z=z
+            z=z,
+            precision=precision,
+            recall=recall
         )

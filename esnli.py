@@ -41,10 +41,12 @@ class Arguments:
     rationale_strategy: str = field(default='independent', metadata={
         'choices': ['independent', 'contextual']
     })
-    lambda_init: float = field(default=1.0)
+    lambda_init: float = field(default=0.1)
     config_dir: str = field(default='configs')
     logging_dir: str = field(default='outputs')
     override_dataset: bool = False
+    do_train: bool = True
+    do_test: bool = True
 
 
 class Bunch:
@@ -55,8 +57,15 @@ class Bunch:
 @dataclass
 class Collator(DataCollatorWithPadding):
     def __call__(self, features: List[Dict[str, List[int]]]):
+        ignore_keys = ['premise_highlight', 'hypothesis_highlight']
+        drop_keys = [key for key in features[0].keys() if isinstance(features[0][key], str)] + ['length']
+        # print(drop_keys)
+        encoded_inputs = {key: [example[key] for example in features] for key in features[0].keys()
+                          if key not in (ignore_keys + drop_keys)}
+        ignored_encoded_inputs = {key: [example[key] for example in features] for key in features[0].keys()
+                                  if key in ignore_keys}
         batch = self.tokenizer.pad(
-            features,
+            encoded_inputs,
             padding=self.padding,
             max_length=self.max_length,
             pad_to_multiple_of=self.pad_to_multiple_of,
@@ -68,6 +77,7 @@ class Collator(DataCollatorWithPadding):
         if "label_ids" in batch:
             batch["labels"] = batch["label_ids"]
             del batch["label_ids"]
+        batch.update(ignored_encoded_inputs)
         return batch
 
 
@@ -92,9 +102,16 @@ per_class_accuracy = per_class_accuracy_with_names()
 def compute_metrics_default(pred: EvalPrediction):
     labels = pred.label_ids
     logits = pred.predictions
+    # print(type(logits))
     if isinstance(logits, tuple):
-        logits, z = logits
-    preds = logits.argmax(-1)
+        logits, = logits[:1]
+    # print(logits.shape)
+    if logits.shape != labels.shape:
+        preds = logits.argmax(-1)
+    else:
+        preds = logits
+    # print(labels)
+    # print(preds)
     acc = accuracy_score(labels, preds)
     return {
         'accuracy': acc,
@@ -102,14 +119,14 @@ def compute_metrics_default(pred: EvalPrediction):
     }
 
 
-def compute_metrics_binerized(pred):
-    y_true = pred.label_ids
-    y_pred = pred.predictions
-    accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
-    return {
-        **per_class_accuracy(y_true, y_pred),
-        'accuracy': accuracy,
-    }
+# def compute_metrics_binerized(pred):
+#     y_true = pred.label_ids
+#     y_pred = pred.predictions
+#     accuracy = accuracy_score(y_true=y_true, y_pred=y_pred)
+#     return {
+#         'accuracy': accuracy,
+#         **per_class_accuracy(y_true, y_pred),
+#     }
 
 
 def compute_metrics_wrap(compute_metrics_fn, preprocess_fn):
@@ -130,7 +147,11 @@ class ReportCallback(TrainerCallback):
         if model is not None and 'mask_metrics' in model.__dict__:
             mask_metrics = model.mask_metrics
             if mask_metrics is not None and is_wandb_available():
+                for k, v in mask_metrics.items():
+                    mask_metrics[k] = mask_metrics[k] / model.mask_metrics_count
                 self.logger.log(mask_metrics)
+                model.mask_metrics = None
+                model.mask_metrics_count = 0
 
 
 def extract_rationale(sentence, flag_token='*'):
@@ -179,6 +200,12 @@ def main(config: Arguments):
         else:
             args = (examples[premise_key], examples[hypothesis_key])
         result = tokenizer(*args, max_length=max_seq_length, truncation=True, return_length=True)
+        result.update({
+            'premise_highlight': [tokenizer.encode(x, add_special_tokens=False) for x in
+                                  examples['premise_highlighted']],
+            'hypothesis_highlight': [tokenizer.encode(x, add_special_tokens=False) for x in
+                                     examples['hypothesis_highlighted']]
+        })
         return result
 
     if save_dataset:
@@ -199,6 +226,7 @@ def main(config: Arguments):
     bert_config.rationale_type = rationale_type
     bert_config.rationale_strategy = rationale_strategy
     bert_config.lambda_init = lambda_init
+    bert_config.highlight_token = tokenizer.encode('*', add_special_tokens=False)[0]
     model = BertWithRationaleForSequenceClassification.from_pretrained(model_name_or_path, config=bert_config)
 
     report_to_wandb = report_to_wandb and is_wandb_available()
@@ -234,13 +262,16 @@ def main(config: Arguments):
     if report_to_wandb:
         trainer.add_callback(ReportCallback(wandb))
 
+    if config.tag is None:
+        config.tag = 'unspecified'
     model_dir = join('models', f'{config.tag.replace("-", "_")}_seed_{seed}')
     print(f'Model will be saved at {abspath(model_dir)}')
 
-    train_output = trainer.train()
-    print(f'Train outputs:\n{train_output}')
-    print(f'Saving model to {abspath(model_dir)}')
-    trainer.save_model(model_dir)
+    if config.do_train:
+        train_output = trainer.train()
+        print(f'Train outputs:\n{train_output}')
+        print(f'Saving model to {abspath(model_dir)}')
+        trainer.save_model(model_dir)
 
     def test_preprocess_function(examples):
         # Tokenize the texts
@@ -248,39 +279,41 @@ def main(config: Arguments):
         result = tokenizer(*args, max_length=max_seq_length, truncation=True, padding='max_length')
         return result
 
-    eval_results = trainer.evaluate(test_dataset, metric_key_prefix='snli_eval')
-    print('Test Results:')
-    print(eval_results)
-    for test_ds_name, key in test_dataset_names:
-        test_ds: Dataset = load_dataset(test_ds_name)[key]
-        test_ds = test_ds.map(test_preprocess_function, batched=True)
-
-        compute_metrics_old = trainer.compute_metrics
-        if test_ds_name in ['hans']:
-            # Binerization is needed because some datasets (like HANS, FEVER-Symmetric)
-            # have 2 classes, while the model is trained on standard NLI (3 classes)
-            def binerize_fn(pred: EvalPrediction):
-                print(f'Binerizing dataset {test_ds_name}')
-                logits = pred.predictions
-                if isinstance(logits, tuple):
-                    logits, z = logits
-                preds = logits.argmax(-1)
-                # (Entailment, Neutral, Contradiction)
-
-                # Neutral => Contradiction
-                preds[preds == 1] = 2
-                # Contradiction (2) => Contradiction (1)
-                preds[preds == 2] = 1
-
-                return EvalPrediction(predictions=preds, label_ids=pred.label_ids)
-
-            trainer.compute_metrics = compute_metrics_wrap(compute_metrics_binerized, binerize_fn)
-
-        eval_results = trainer.evaluate(test_ds, metric_key_prefix=f'{test_ds_name}_eval')
-        print(f'Test Results for {test_ds_name}:')
+    if config.do_test:
+        eval_results = trainer.evaluate(test_dataset, metric_key_prefix='snli_eval')
+        print('Test Results:')
         print(eval_results)
-        # Restore
-        trainer.compute_metrics = compute_metrics_old
+        for test_ds_name, key in test_dataset_names:
+            test_ds: Dataset = load_dataset(test_ds_name)[key]
+            test_ds = test_ds.map(test_preprocess_function, batched=True)
+
+            compute_metrics_old = trainer.compute_metrics
+            if test_ds_name in ['hans']:
+                # Binerization is needed because some datasets (like HANS, FEVER-Symmetric)
+                # have 2 classes, while the model is trained on standard NLI (3 classes)
+                def binerize_fn(pred: EvalPrediction):
+                    print(f'Binerizing dataset {test_ds_name}')
+                    logits = pred.predictions
+                    if isinstance(logits, tuple):
+                        logits, = logits[:1]
+                    preds = logits.argmax(-1)
+                    # (Entailment, Neutral, Contradiction)
+
+                    # Neutral => Contradiction
+                    preds[preds == 1] = 2
+                    # Contradiction (2) => Contradiction (1)
+                    preds[preds == 2] = 1
+
+                    return EvalPrediction(predictions=preds, label_ids=pred.label_ids)
+
+                trainer.compute_metrics = compute_metrics_wrap(compute_metrics_default, binerize_fn)
+
+            eval_results = trainer.evaluate(test_ds, metric_key_prefix=f'{test_ds_name}_eval')
+            # test_dl = trainer.get_test_dataloader(test_ds)
+            print(f'Test Results for {test_ds_name}:')
+            print(eval_results)
+            # Restore
+            trainer.compute_metrics = compute_metrics_old
 
 
 if __name__ == '__main__':

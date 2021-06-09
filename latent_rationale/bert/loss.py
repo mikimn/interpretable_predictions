@@ -14,7 +14,8 @@ class RationaleLoss(nn.Module):
                  # lambda_init: float = 0.0015,
                  lambda_init: float = 0.01,
                  lambda_min: float = 1e-12,
-                 lambda_max: float = 5.
+                 lambda_max: float = 5.,
+                 lambda_sparsity: float = 0.1
                  ):
         super().__init__()
         self.criterion = nn.CrossEntropyLoss()
@@ -28,6 +29,8 @@ class RationaleLoss(nn.Module):
         self.lambda_init = lambda_init
         self.lambda_min = lambda_min
         self.lambda_max = lambda_max
+
+        self.lambda_sparsity = lambda_sparsity
 
         # lagrange buffers
         self.register_buffer('lambda0', torch.full((1,), lambda_init))
@@ -121,7 +124,9 @@ class RationaleLoss(nn.Module):
         # targets: [N,]
         # mask: [B, S]
         loss = self.criterion(preds, targets)  # [B, T]
-        optional = {}
+        optional = {
+            "ce": loss
+        }
         if z_dists is None:
             return loss, optional
 
@@ -146,7 +151,9 @@ class RationaleLoss(nn.Module):
         # print(loss)
         # print(lambda0)
         # print(c0)
-        loss += lambda0 * c0.squeeze()
+        # FIXME
+        # loss += lambda0 * c0.squeeze()
+        loss += self.lambda_sparsity * l0.squeeze()
 
         # number of transitions per sentence normalized by length
         # TODO Number of transitions per premise/hypothesis??
@@ -163,6 +170,8 @@ class RationaleLoss(nn.Module):
             optional["lagrangian1"] = (self.lambda1 * c1_hat).item()
 
         lambda1 = self.lambda1.squeeze().detach()
-        loss += lambda1 * c1.squeeze()
-
+        # FIXME
+        # loss += lambda1 * c1.squeeze()
+        # loss += LAMBDA_TEST * c1.squeeze()
+        optional["no_ce"] = loss - optional["ce"]
         return loss, optional

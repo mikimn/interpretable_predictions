@@ -1,0 +1,1282 @@
+[
+    {
+        "original": "[CLS] a woman poses with sunglasses shaped like dollar signs and a silver suitcase labelled'lucky'full of bills. [SEP] a woman is wearing black sunglasses and holding a black suitcase. [SEP]",
+        "masked": "[CLS] [MASK] woman poses [MASK] sunglasses shaped like dollar signs [MASK] [MASK] silver suitcase labelled'lucky'full [MASK] bills. [MASK] [MASK] woman [MASK] wearing black sunglasses [MASK] holding [MASK] black suitcase. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman, wearing a colorful bikini, rests laying down next to the blue water. [SEP] a woman in a bikini lays near the water. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] wearing [MASK] colorful bikini [MASK] rests laying down next to the blue water. [MASK] [MASK] woman [MASK] [MASK] bikini lays near the water. [MASK]"
+    },
+    {
+        "original": "[CLS] two people bicycle on a path separated by small mountains. [SEP] two people are riding on bikes outside. [SEP]",
+        "masked": "[CLS] [MASK] people bicycle [MASK] [MASK] path separated [MASK] small mountains. [MASK] [MASK] people [MASK] riding [MASK] bikes outside. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is watching as a woman is reading a piece of paper. [SEP] a person watches someone. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] watching [MASK] [MASK] woman [MASK] reading [MASK] piece [MASK] paper. [MASK] [MASK] person watches someone. [MASK]"
+    },
+    {
+        "original": "[CLS] a female dancer wearing all white dancing while a photographer wearing all white takes her picture. [SEP] some players are playing cricket in ground [SEP]",
+        "masked": "[CLS] [MASK] female dancer wearing all white dancing while [MASK] photographer wearing all white takes her picture. [MASK] some players [MASK] playing cricket [MASK] ground [MASK]"
+    },
+    {
+        "original": "[CLS] three black people, two men and one woman, in the middle of a small, rural street, are piling up items on top of a taxi cab with a net dangling down on top of the windshield, while two children and two other people are nearby. [SEP] the people put furniture on the taxi [SEP]",
+        "masked": "[CLS] three black people [MASK] [MASK] men [MASK] one woman [MASK] [MASK] the middle [MASK] [MASK] small [MASK] rural street [MASK] [MASK] piling up items [MASK] top [MASK] [MASK] taxi cab [MASK] [MASK] net dangling down [MASK] top [MASK] the windshield [MASK] while [MASK] children [MASK] [MASK] other people [MASK] nearby. [MASK] the people put furniture [MASK] the taxi [MASK]"
+    },
+    {
+        "original": "[CLS] a black and brown dog is playing with a brown and white dog. [SEP] two dogs play. [SEP]",
+        "masked": "[CLS] [MASK] black [MASK] brown dog [MASK] playing [MASK] [MASK] brown [MASK] white dog. [MASK] [MASK] dogs play. [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a red vest is walking past a black and green fence. [SEP] the man wearing the vest is sitting on the sofa. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] red vest [MASK] walking past [MASK] black [MASK] green fence. [MASK] the man wearing the vest [MASK] sitting [MASK] the sofa. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people stand near and on a large black square on the ground with some yellow writing on it. [SEP] a group of people wait [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people stand near [MASK] [MASK] [MASK] large black square [MASK] the ground [MASK] some yellow writing [MASK] it. [MASK] [MASK] group [MASK] people wait [MASK]"
+    },
+    {
+        "original": "[CLS] lab tech looking through a microscope in a lab. [SEP] the lab tech is using the microscope. [SEP]",
+        "masked": "[CLS] lab tech looking through [MASK] microscope [MASK] [MASK] lab. [MASK] the lab tech [MASK] using the microscope. [MASK]"
+    },
+    {
+        "original": "[CLS] three young asian women walk on a rain soaked street with traffic in the background. [SEP] the women each have umbrellas. [SEP]",
+        "masked": "[CLS] three young asian women walk [MASK] [MASK] rain soaked street [MASK] traffic [MASK] the background. [MASK] the women each have umbrella [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is shooting a gun outdoors, on what looks like a beautiful sunny day. [SEP] a man is shooting a bow and arrow on a rainy day. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] shooting [MASK] gun outdoors [MASK] [MASK] what looks like [MASK] beautiful sunny day. [MASK] [MASK] man [MASK] shooting [MASK] bow [MASK] arrow [MASK] [MASK] rainy day. [MASK]"
+    },
+    {
+        "original": "[CLS] a tractor decorated as a float for a parade [SEP] a lawnmover is being repaired [SEP]",
+        "masked": "[CLS] [MASK] tractor decorated [MASK] [MASK] float for [MASK] parade [MASK] [MASK] lawnmover [MASK] being repaired [MASK]"
+    },
+    {
+        "original": "[CLS] a man playing an electric guitar on stage. [SEP] a man is performing for cash. [SEP]",
+        "masked": "[CLS] [MASK] man playing [MASK] electric guitar [MASK] stage. [MASK] [MASK] man [MASK] performing for cash. [MASK]"
+    },
+    {
+        "original": "[CLS] a young girl standing in front of a row of yellow chairs. [SEP] a human standing. [SEP]",
+        "masked": "[CLS] [MASK] young girl standing [MASK] front [MASK] [MASK] row [MASK] yellow chairs. [MASK] [MASK] human standing. [MASK]"
+    },
+    {
+        "original": "[CLS] a young girl is playing a musical instrument and singing into a microphone. [SEP] a boy plays air guitar while lip syncing. [SEP]",
+        "masked": "[CLS] [MASK] young girl [MASK] playing [MASK] musical instrument [MASK] singing into [MASK] microphone. [MASK] [MASK] boy plays air guitar while lip syncing. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy making an'oh!'face in front of a bay. [SEP] a child is at the bay. [SEP]",
+        "masked": "[CLS] [MASK] boy making [MASK]'oh!'face [MASK] front [MASK] [MASK] bay. [MASK] [MASK] child [MASK] at the bay. [MASK]"
+    },
+    {
+        "original": "[CLS] the three young children played with some toilet paper in the grass. [SEP] the three young children are playing inside. [SEP]",
+        "masked": "[CLS] the three young children played [MASK] some toilet paper [MASK] the grass. [MASK] the three young children [MASK] playing inside. [MASK]"
+    },
+    {
+        "original": "[CLS] four people wearing backpacks walking in a line along a mountain trail. [SEP] four people are walking along a mountain trail. [SEP]",
+        "masked": "[CLS] four people wearing backpack [MASK] walking [MASK] [MASK] line along [MASK] mountain trail. [MASK] four people [MASK] walking along [MASK] mountain trail. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people in a room, most with computers, some raising their hands. [SEP] the group of people is outside playing basketball. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people [MASK] [MASK] room [MASK] most [MASK] computers [MASK] some raising their hands. [MASK] the group [MASK] people [MASK] outside playing basketball. [MASK]"
+    },
+    {
+        "original": "[CLS] a young woman talks on the phone and carries her bags while walking past some hats on display. [SEP] a woman has been shopping. [SEP]",
+        "masked": "[CLS] [MASK] young woman talks [MASK] the phone [MASK] carries her bags while walking past some hats [MASK] display. [MASK] [MASK] woman has been shopping. [MASK]"
+    },
+    {
+        "original": "[CLS] people protesting age discrimination in an organized street rally. [SEP] people are inside watching tv. [SEP]",
+        "masked": "[CLS] people protesting age discrimination [MASK] [MASK] organized street rally. [MASK] people [MASK] inside watching tv. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a plaid shirt is walking on a street where there are advertisements in chinese. [SEP] he is chinese. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] plaid shirt [MASK] walking [MASK] [MASK] street where there [MASK] advertisements [MASK] chinese. [MASK] he [MASK] chinese. [MASK]"
+    },
+    {
+        "original": "[CLS] a kneeling man bends his ear to listen on another in front of a guitar and audio equipment. [SEP] two men play chess together. [SEP]",
+        "masked": "[CLS] [MASK] kneeling man bends his ear to listen [MASK] another [MASK] front [MASK] [MASK] guitar [MASK] audio equipment. [MASK] [MASK] men play chess together. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in a long, dark coat looks through trashcans in winter. [SEP] a woman older than thirty is outside in winter. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] long [MASK] dark coat looks through trashcans [MASK] winter. [MASK] [MASK] woman older than thirty [MASK] outside [MASK] winter. [MASK]"
+    },
+    {
+        "original": "[CLS] two men in conversation while sitting at a bar. [SEP] some people in conversation while sitting at a bar. [SEP]",
+        "masked": "[CLS] [MASK] men [MASK] conversation while sitting at [MASK] bar. [MASK] some people [MASK] conversation while sitting at [MASK] bar. [MASK]"
+    },
+    {
+        "original": "[CLS] a man with beard sitting down playing an acoustic guitar. [SEP] the bearded man plays a song and sings along. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] beard sitting down playing [MASK] acoustic guitar. [MASK] the bearded man plays [MASK] song [MASK] sings along. [MASK]"
+    },
+    {
+        "original": "[CLS] children playing a video game together. [SEP] the kids are at the table eating dinner. [SEP]",
+        "masked": "[CLS] children playing [MASK] video game together. [MASK] the kids [MASK] at the table eating dinner. [MASK]"
+    },
+    {
+        "original": "[CLS] a young man waring black and carrying a skateboard looks at an outdoor skateboard park. [SEP] a guy is going skateboarding today. [SEP]",
+        "masked": "[CLS] [MASK] young man waring black [MASK] carrying [MASK] skateboard looks at [MASK] outdoor skateboard park. [MASK] [MASK] guy [MASK] going skateboarding today. [MASK]"
+    },
+    {
+        "original": "[CLS] female beach volleyball players on either side of a net, with one looking to spike the ball as her teammate watches with the blue sky in the background. [SEP] a group of women are soaked from the rain. [SEP]",
+        "masked": "[CLS] female beach volleyball players [MASK] either side [MASK] [MASK] net [MASK] [MASK] one looking to spike the ball [MASK] her teammate watches [MASK] the blue sky [MASK] the background. [MASK] [MASK] group [MASK] women [MASK] soaked from the rain. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy on a bicycle in midair [SEP] a boy is outdoors. [SEP]",
+        "masked": "[CLS] [MASK] boy [MASK] [MASK] bicycle [MASK] [MASK]air [MASK] [MASK] boy [MASK] outdoors. [MASK]"
+    },
+    {
+        "original": "[CLS] a wet child stands in chest deep ocean water. [SEP] the child s playing on the beach. [SEP]",
+        "masked": "[CLS] [MASK] wet child stands [MASK] chest deep ocean water. [MASK] the child s playing [MASK] the beach. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman standing in front of a wall holding a can of bud light with her shirt tied into a semi - halter. [SEP] something alcoholic is visible. [SEP]",
+        "masked": "[CLS] [MASK] woman standing [MASK] front [MASK] [MASK] wall holding [MASK] can [MASK] bud light [MASK] her shirt tied into [MASK] semi [MASK] halter. [MASK] something alcoholic [MASK] visible. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman is taking a picture of a girl on a scooter. [SEP] a woman is taking a picture. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] taking [MASK] picture [MASK] [MASK] girl [MASK] [MASK] scooter. [MASK] [MASK] woman [MASK] taking [MASK] picture. [MASK]"
+    },
+    {
+        "original": "[CLS] eight tourists stand at a railing looking at an attraction. [SEP] the attraction drew the attention of the tourists [SEP]",
+        "masked": "[CLS] eight tourists stand at [MASK] railing looking at [MASK] attraction. [MASK] the attraction drew the attention [MASK] the tourists [MASK]"
+    },
+    {
+        "original": "[CLS] two girls pass two boys by a tree in a neon lit street. [SEP] some kids pass other kids on a street. [SEP]",
+        "masked": "[CLS] [MASK] girls pass [MASK] boys [MASK] [MASK] tree [MASK] [MASK] neon lit street. [MASK] some kids pass other kids [MASK] [MASK] street. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman wearing a red hat and red bandanna followed by a man in a red bandanna. [SEP] the people are wearing bandanas. [SEP]",
+        "masked": "[CLS] [MASK] woman wearing [MASK] red hat [MASK] red bandanna followed [MASK] [MASK] man [MASK] [MASK] red bandanna. [MASK] the people [MASK] wearing bandanas. [MASK]"
+    },
+    {
+        "original": "[CLS] a couple of females are talking to each other while one is flicking her cigarette. [SEP] the other likes to smoke as well. [SEP]",
+        "masked": "[CLS] [MASK] couple [MASK] females [MASK] talking to each other while one [MASK] flicking her cigarette. [MASK] the other likes to smoke [MASK] well. [MASK]"
+    },
+    {
+        "original": "[CLS] four children are playing in some water. [SEP] the children are muddy. [SEP]",
+        "masked": "[CLS] four children [MASK] playing [MASK] some water. [MASK] the children [MASK] muddy. [MASK]"
+    },
+    {
+        "original": "[CLS] a girl in a purple top, baggy pants and sneakers is blowing a kiss, while another girl in black watches. [SEP] a girl is smoking a cigar in a pool hall. [SEP]",
+        "masked": "[CLS] [MASK] girl [MASK] [MASK] purple top [MASK] baggy pants [MASK] sneakers [MASK] blowing [MASK] kiss [MASK] while another girl [MASK] black watches. [MASK] [MASK] girl [MASK] smoking [MASK] cigar [MASK] [MASK] pool hall. [MASK]"
+    },
+    {
+        "original": "[CLS] a person dressed in a dress with flowers and a stuffed bee attached to it, is pushing a baby stroller down the street. [SEP] an old lady pushing a stroller down a busy street. [SEP]",
+        "masked": "[CLS] [MASK] person dressed [MASK] [MASK] dress [MASK] flowers [MASK] [MASK] stuffed bee attached to it [MASK] [MASK] pushing [MASK] baby stroller down the street. [MASK] [MASK] old lady pushing [MASK] stroller down [MASK] busy street. [MASK]"
+    },
+    {
+        "original": "[CLS] a large audience of people seated at banquet tables is watching the happenings on a stage surrounded by blue curtains. [SEP] the large audience is watching an award ceremony. [SEP]",
+        "masked": "[CLS] [MASK] large audience [MASK] people seated at banquet tables [MASK] watching the happening [MASK] [MASK] [MASK] stage surrounded [MASK] blue curtains. [MASK] the large audience [MASK] watching [MASK] award ceremony. [MASK]"
+    },
+    {
+        "original": "[CLS] a child doing gymnastics [SEP] a child is doing gymnastics. [SEP]",
+        "masked": "[CLS] [MASK] child doing gymnastics [MASK] [MASK] child [MASK] doing gymnastics. [MASK]"
+    },
+    {
+        "original": "[CLS] one man on the left with black hair, wearing glasses, and another man on the right with slightly graying black hair, without glasses but clasping his hands together, are laughing. [SEP] the people are a couple [SEP]",
+        "masked": "[CLS] one man [MASK] the left [MASK] black hair [MASK] wearing glasses [MASK] [MASK] another man [MASK] the right [MASK] slightly graying black hair [MASK] without glasses but clasping his hands together [MASK] [MASK] laughing. [MASK] the people [MASK] [MASK] couple [MASK]"
+    },
+    {
+        "original": "[CLS] a light colored dog leaps over a hurdle. [SEP] a dog jumps over a obstacel. [SEP]",
+        "masked": "[CLS] [MASK] light colored dog leaps over [MASK] hurdle. [MASK] [MASK] dog jumps over [MASK] obstacel. [MASK]"
+    },
+    {
+        "original": "[CLS] a small child is giving heavy metal signs [SEP] kid showing the heavy metal hand sign. [SEP]",
+        "masked": "[CLS] [MASK] small child [MASK] giving heavy metal signs [MASK] kid showing the heavy metal hand sign. [MASK]"
+    },
+    {
+        "original": "[CLS] an older man leans against a pedestal outside of an ornate building. [SEP] a young man is jogging [SEP]",
+        "masked": "[CLS] [MASK] older man leans against [MASK] pedestal outside [MASK] [MASK] ornate building. [MASK] [MASK] young man [MASK] jogging [MASK]"
+    },
+    {
+        "original": "[CLS] four boys are about to be hit by an approaching wave. [SEP] a giant wave is about to crash on some boys. [SEP]",
+        "masked": "[CLS] four boys [MASK] about to be hit [MASK] [MASK] approaching wave. [MASK] [MASK] giant wave [MASK] about to crash [MASK] some boys. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of construction workers busy refinishing a subway station. [SEP] a team of construction workers are hurrying to get back on schedule. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] construction workers busy refinishing [MASK] subway station. [MASK] [MASK] team [MASK] construction workers [MASK] hurrying to get back [MASK] schedule. [MASK]"
+    },
+    {
+        "original": "[CLS] a five person brass band is seated, semi - circularly, in a white alcove of a church that has stained glass windows. [SEP] the alcove is purple. [SEP]",
+        "masked": "[CLS] [MASK] five person brass band [MASK] seated [MASK] semi [MASK] circularly [MASK] [MASK] [MASK] white alcove [MASK] [MASK] church that has stained glass windows. [MASK] the alcove [MASK] purple. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman is in the middle of hitting a tennis ball. [SEP] a woman is sleeping. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] the middle [MASK] hitting [MASK] tennis ball. [MASK] [MASK] woman [MASK] sleeping. [MASK]"
+    },
+    {
+        "original": "[CLS] two men outside of a restaurant. [SEP] two men are sitting on the restaurant patio. [SEP]",
+        "masked": "[CLS] [MASK] men outside [MASK] [MASK] restaurant. [MASK] [MASK] men [MASK] sitting [MASK] the restaurant patio. [MASK]"
+    },
+    {
+        "original": "[CLS] uniformed group walks down a street. [SEP] a group of people walk down the street. [SEP]",
+        "masked": "[CLS] uniformed group walks down [MASK] street. [MASK] [MASK] group [MASK] people walk down the street. [MASK]"
+    },
+    {
+        "original": "[CLS] a girl in black pants doing exercises. [SEP] a girl moving her muscles to get exercise in. [SEP]",
+        "masked": "[CLS] [MASK] girl [MASK] black pants doing exercises. [MASK] [MASK] girl moving her muscles to get exercise [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman is taking a picture on the shoulders of another woman in cold weather. [SEP] a man is running errands on his bike. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] taking [MASK] picture [MASK] the shoulders [MASK] another woman [MASK] cold weather. [MASK] [MASK] man [MASK] running errand [MASK] [MASK] his bike. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a light brownish jacket, orange undershirt, blue jeans, and a black satchel, who has many sticks of cotton candy. [SEP] a naked man is picking apples. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] light brownish jacket [MASK] orange undershirt [MASK] blue jeans [MASK] [MASK] [MASK] black satchel [MASK] who has many sticks [MASK] cotton candy. [MASK] [MASK] naked man [MASK] picking apples. [MASK]"
+    },
+    {
+        "original": "[CLS] a man and a woman are laughing. [SEP] a man and woman are laughing at a joke. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] woman [MASK] laughing. [MASK] [MASK] man [MASK] woman [MASK] laughing at [MASK] joke. [MASK]"
+    },
+    {
+        "original": "[CLS] two young girls in bathing suits laugh while standing under a fountain of water. [SEP] two young girls are standing under a fountain of water. [SEP]",
+        "masked": "[CLS] [MASK] young girls [MASK] bathing suits laugh while standing under [MASK] fountain [MASK] water. [MASK] [MASK] young girls [MASK] standing under [MASK] fountain [MASK] water. [MASK]"
+    },
+    {
+        "original": "[CLS] two homeless men dressed in gray sit against a wall with a sleeping dog on a purple leash. [SEP] two men own homes. [SEP]",
+        "masked": "[CLS] [MASK] homeless men dressed [MASK] gray sit against [MASK] wall [MASK] [MASK] sleeping dog [MASK] [MASK] purple leash. [MASK] [MASK] men own homes. [MASK]"
+    },
+    {
+        "original": "[CLS] two teens trying to win a prize at a carnival. [SEP] two humans are outdoors. [SEP]",
+        "masked": "[CLS] [MASK] teens trying to win [MASK] prize at [MASK] carnival. [MASK] [MASK] humans [MASK] outdoors. [MASK]"
+    },
+    {
+        "original": "[CLS] the white dog is pulling a large stick. [SEP] the dog is taking a nap at the park. [SEP]",
+        "masked": "[CLS] the white dog [MASK] pulling [MASK] large stick. [MASK] the dog [MASK] taking [MASK] nap at the park. [MASK]"
+    },
+    {
+        "original": "[CLS] two young teenage girls hiking through the snow on a cold winter day. [SEP] two girls with blonde hair are hiking. [SEP]",
+        "masked": "[CLS] [MASK] young teenage girls hiking through the snow [MASK] [MASK] cold winter day. [MASK] [MASK] girls [MASK] blonde hair [MASK] hiking. [MASK]"
+    },
+    {
+        "original": "[CLS] pedestrians use the crosswalks as traffic awaits their turn to drive through an intersection. [SEP] traffic drives through the crosswalk. [SEP]",
+        "masked": "[CLS] pedestrians use the crosswalk [MASK] [MASK] traffic await [MASK] their turn to drive through [MASK] intersection. [MASK] traffic drives through the crosswalk. [MASK]"
+    },
+    {
+        "original": "[CLS] a man, woman, and child get their picture taken in front of the mountains. [SEP] a family is in their car. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] woman [MASK] [MASK] child get their picture taken [MASK] front [MASK] the mountains. [MASK] [MASK] family [MASK] [MASK] their car. [MASK]"
+    },
+    {
+        "original": "[CLS] a man reads the paper in a bar with green lighting. [SEP] the man is reading the sportspage. [SEP]",
+        "masked": "[CLS] [MASK] man reads the paper [MASK] [MASK] bar [MASK] green lighting. [MASK] the man [MASK] reading the sportspage. [MASK]"
+    },
+    {
+        "original": "[CLS] an orange on the floor next to a dog. [SEP] the fruit next to the dog is an apple. [SEP]",
+        "masked": "[CLS] [MASK] orange [MASK] the floor next to [MASK] dog. [MASK] the fruit next to the dog [MASK] [MASK] apple. [MASK]"
+    },
+    {
+        "original": "[CLS] police are setting up a barricade due to a fire. [SEP] police are setting up blockades near a movie set where they film a fire scene. [SEP]",
+        "masked": "[CLS] police [MASK] setting up [MASK] barricade due to [MASK] fire. [MASK] police [MASK] setting up blockade [MASK] near [MASK] movie set where they film [MASK] fire scene. [MASK]"
+    },
+    {
+        "original": "[CLS] a person dressed in a jacket and long pants walks down a snow - covered street in a small town. [SEP] the pants are long. [SEP]",
+        "masked": "[CLS] [MASK] person dressed [MASK] [MASK] jacket [MASK] long pants walks down [MASK] snow [MASK] covered street [MASK] [MASK] small town. [MASK] the pants [MASK] long. [MASK]"
+    },
+    {
+        "original": "[CLS] a man with a white beard speaks into a microphone wearing a long - sleeved gray button down shirt. [SEP] a man is speaking to a crowd. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] white beard speaks into [MASK] microphone wearing [MASK] long [MASK] sleeved gray button down shirt. [MASK] [MASK] man [MASK] speaking to [MASK] crowd. [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a white shirt and a blue jeans reading a newspaper while standing [SEP] a man is reading a newspaper. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] white shirt [MASK] [MASK] blue jeans reading [MASK] newspaper while standing [MASK] [MASK] man [MASK] reading [MASK] newspaper. [MASK]"
+    },
+    {
+        "original": "[CLS] three girls jumping in front of a house's flower garden. [SEP] three girls are jumping [SEP]",
+        "masked": "[CLS] three girls jumping [MASK] front [MASK] [MASK] house's flower garden. [MASK] three girls [MASK] jumping [MASK]"
+    },
+    {
+        "original": "[CLS] two children re laying on a rug with some wooden bricks laid out in a square between them. [SEP] two children are building a brick furnace. [SEP]",
+        "masked": "[CLS] [MASK] children re laying [MASK] [MASK] rug [MASK] some wooden bricks laid out [MASK] [MASK] square between them. [MASK] [MASK] children [MASK] building [MASK] brick furnace. [MASK]"
+    },
+    {
+        "original": "[CLS] a small boy wearing a blue shirt plays in the kiddie pool. [SEP] boy in a pool [SEP]",
+        "masked": "[CLS] [MASK] small boy wearing [MASK] blue shirt plays [MASK] the kiddie pool. [MASK] boy [MASK] [MASK] pool [MASK]"
+    },
+    {
+        "original": "[CLS] a male with sunglasses is poking at a tree with a pole. [SEP] a tall human poking [SEP]",
+        "masked": "[CLS] [MASK] male [MASK] sunglasses [MASK] poking at [MASK] tree [MASK] [MASK] pole. [MASK] [MASK] tall human poking [MASK]"
+    },
+    {
+        "original": "[CLS] a young man is playing a blue guitar. [SEP] the man is playing the guitar. [SEP]",
+        "masked": "[CLS] [MASK] young man [MASK] playing [MASK] blue guitar. [MASK] the man [MASK] playing the guitar. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in red blouse is standing with small blond child in front of a small folding chalkboard. [SEP] a dog barks loud [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] red blouse [MASK] standing [MASK] small blond child [MASK] front [MASK] [MASK] small folding chalkboard. [MASK] [MASK] dog bark [MASK] loud [MASK]"
+    },
+    {
+        "original": "[CLS] two men working on farm equipment that is being pulled by two horses. [SEP] the men are working on farm stuff. [SEP]",
+        "masked": "[CLS] [MASK] men working [MASK] farm equipment that [MASK] being pulled [MASK] [MASK] horses. [MASK] the men [MASK] working [MASK] farm stuff. [MASK]"
+    },
+    {
+        "original": "[CLS] two workers in work attire ( windbreakers and vests ) walking along the edge of a road. [SEP] the workers were wearing safty gear. [SEP]",
+        "masked": "[CLS] [MASK] workers [MASK] work attire [MASK] windbreakers [MASK] vest [MASK] ) walking along the edge [MASK] [MASK] road. [MASK] the workers were wearing safty gear. [MASK]"
+    },
+    {
+        "original": "[CLS] three children, two boys and a girl, are playing with the swings on a playground with residential houses in the background. [SEP] the two boys and one girl are limbless. [SEP]",
+        "masked": "[CLS] three children [MASK] [MASK] boys [MASK] [MASK] girl [MASK] [MASK] playing [MASK] the swings [MASK] [MASK] playground [MASK] residential houses [MASK] the background. [MASK] the [MASK] boys [MASK] one girl [MASK] limbless. [MASK]"
+    },
+    {
+        "original": "[CLS] a child playing with two brooms in front of a pine tree with lights on it. [SEP] a child cuts down a christmas tree [SEP]",
+        "masked": "[CLS] [MASK] child playing [MASK] [MASK] broom [MASK] [MASK] front [MASK] [MASK] pine tree [MASK] lights [MASK] it. [MASK] [MASK] child cuts down [MASK] christmas tree [MASK]"
+    },
+    {
+        "original": "[CLS] a man with a latex glove and black t - shit is standing in front of a chevy van. [SEP] a man standing in front of a van waiting for his victim [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] latex glove [MASK] black t [MASK] shit [MASK] standing [MASK] front [MASK] [MASK] chevy van. [MASK] [MASK] man standing [MASK] front [MASK] [MASK] van waiting for his victim [MASK]"
+    },
+    {
+        "original": "[CLS] a group of women and men are in the water wit their clothes on. [SEP] the group of people are swimming in the water. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] women [MASK] men [MASK] [MASK] the water wit their clothes [MASK]. [MASK] the group [MASK] people [MASK] swimming [MASK] the water. [MASK]"
+    },
+    {
+        "original": "[CLS] two older men in business attire are walking in a city, text graffiti is visible on the sidewalk. [SEP] two older men walk down a defaced street [SEP]",
+        "masked": "[CLS] [MASK] older men [MASK] business attire [MASK] walking [MASK] [MASK] city [MASK] text graffiti [MASK] visible [MASK] the sidewalk. [MASK] [MASK] older men walk down [MASK] defaced street [MASK]"
+    },
+    {
+        "original": "[CLS] a woman runs on the beach. [SEP] a runner is working out on the sand. [SEP]",
+        "masked": "[CLS] [MASK] woman runs [MASK] the beach. [MASK] [MASK] runner [MASK] working out [MASK] the sand. [MASK]"
+    },
+    {
+        "original": "[CLS] two women stand in the street both wearing matching outfits with police like jackets that say polotie. [SEP] two women look like police in similar jackets standing in the street. [SEP]",
+        "masked": "[CLS] [MASK] women stand [MASK] the street both wearing matching outfits [MASK] police like jackets that say polotie. [MASK] [MASK] women look like police [MASK] similar jackets standing [MASK] the street. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a black hat opens his mouth. [SEP] a man in black hat keeps his lips sealed. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] black hat opens his mouth. [MASK] [MASK] man [MASK] black hat keeps his lips sealed. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy plays with a motorized car next to a dirty street lined with real cars. [SEP] an abadnoned boy is playing with his toy in the ghetto alley. [SEP]",
+        "masked": "[CLS] [MASK] boy plays [MASK] [MASK] motorized car next to [MASK] dirty street lined [MASK] real cars. [MASK] [MASK] abadnoned boy [MASK] playing [MASK] his toy [MASK] the ghetto alley. [MASK]"
+    },
+    {
+        "original": "[CLS] painter re - creates old works of art in a museum. [SEP] a painter creating an original work of art. [SEP]",
+        "masked": "[CLS] painter re [MASK] creates old works [MASK] art [MASK] [MASK] museum. [MASK] [MASK] painter creating [MASK] original work [MASK] art. [MASK]"
+    },
+    {
+        "original": "[CLS] the people await to cross the street while walking the dog. [SEP] people are at a busy intersection [SEP]",
+        "masked": "[CLS] the people await to cross the street while walking the dog. [MASK] people [MASK] at [MASK] busy intersection [MASK]"
+    },
+    {
+        "original": "[CLS] a blond woman kissing the cheek of a brown - haired man. [SEP] this woman does not know the man she is pictured with. [SEP]",
+        "masked": "[CLS] [MASK] blond woman kissing the cheek [MASK] [MASK] brown [MASK] haired man. [MASK] this woman does not know the man she [MASK] pictured [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman playing with play equipment while a child looks on. [SEP] child watches woman playing with equipment. [SEP]",
+        "masked": "[CLS] [MASK] woman playing [MASK] play equipment while [MASK] child looks [MASK]. [MASK] child watches woman playing [MASK] equipment. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is laid back in front of a tv. [SEP] the man is standing in the kitchen [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] laid back [MASK] front [MASK] [MASK] tv. [MASK] the man [MASK] standing [MASK] the kitchen [MASK]"
+    },
+    {
+        "original": "[CLS] two men are sitting in a restaurant while one of them holds a piece of paper up to the camera. [SEP] paper is being held up to a camera. [SEP]",
+        "masked": "[CLS] [MASK] men [MASK] sitting [MASK] [MASK] restaurant while one [MASK] them holds [MASK] piece [MASK] paper up to the camera. [MASK] paper [MASK] being held up to [MASK] camera. [MASK]"
+    },
+    {
+        "original": "[CLS] some children are playing soccer in front of a large wooden door. [SEP] the kids are enemies. [SEP]",
+        "masked": "[CLS] some children [MASK] playing soccer [MASK] front [MASK] [MASK] large wooden door. [MASK] the kids [MASK] enemies. [MASK]"
+    },
+    {
+        "original": "[CLS] a young woman is about to descend the stairs into a metro station. [SEP] a lady is taking a bus [SEP]",
+        "masked": "[CLS] [MASK] young woman [MASK] about to descend the stairs into [MASK] metro station. [MASK] [MASK] lady [MASK] taking [MASK] bus [MASK]"
+    },
+    {
+        "original": "[CLS] a gymnast is seen defying gravity as she performs an impressive move several feet above the parallel bars. [SEP] the gymnast is a woman [SEP]",
+        "masked": "[CLS] [MASK] gymnast [MASK] seen defying gravity [MASK] she performs [MASK] impressive move [MASK] feet above the parallel bars. [MASK] the gymnast [MASK] [MASK] woman [MASK]"
+    },
+    {
+        "original": "[CLS] lot of people are gathered in front of a building. [SEP] people gather in front of a building. [SEP]",
+        "masked": "[CLS] lot [MASK] people [MASK] gathered [MASK] front [MASK] [MASK] building. [MASK] people gather [MASK] front [MASK] [MASK] building. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people sitting around a table eating food. [SEP] people are at a table eating christmas dinner. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people sitting around [MASK] table eating food. [MASK] people [MASK] at [MASK] table eating christmas dinner. [MASK]"
+    },
+    {
+        "original": "[CLS] an older woman is looking at herself in the mirror at a table with cosmetics. [SEP] the old lady looks into the mirror to choose which makeup she will buy [SEP]",
+        "masked": "[CLS] [MASK] older woman [MASK] looking at herself [MASK] the mirror at [MASK] table [MASK] cosmetics. [MASK] the old lady looks into the mirror to choose which makeup she will buy [MASK]"
+    },
+    {
+        "original": "[CLS] a crowd gathered around a young man who is performing. [SEP] they are at a performance. [SEP]",
+        "masked": "[CLS] [MASK] crowd gathered around [MASK] young man who [MASK] performing. [MASK] they [MASK] at [MASK] performance. [MASK]"
+    },
+    {
+        "original": "[CLS] cheerleaders in blue performing on a football field underneath a yellow football goal post. [SEP] a group of girls shake pom poms. [SEP]",
+        "masked": "[CLS] cheerleader [MASK] [MASK] blue performing [MASK] [MASK] football field underneath [MASK] yellow football goal post. [MASK] [MASK] group [MASK] girls shake pom poms. [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a black hat and coat makes a face with a crowd behind him. [SEP] a guy is standing near a crowd of people. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] black hat [MASK] coat makes [MASK] face [MASK] [MASK] crowd behind him. [MASK] [MASK] guy [MASK] standing near [MASK] crowd [MASK] people. [MASK]"
+    },
+    {
+        "original": "[CLS] a white duck expanding its wings in the water. [SEP] the duck sleeps soundly, floating on top of the water [SEP]",
+        "masked": "[CLS] [MASK] white duck expanding its wings [MASK] the water. [MASK] the duck sleeps soundly [MASK] floating [MASK] top [MASK] the water [MASK]"
+    },
+    {
+        "original": "[CLS] a cowboy riding a horse at a rodeo. [SEP] cowboy riding his horse [SEP]",
+        "masked": "[CLS] [MASK] cowboy riding [MASK] horse at [MASK] rodeo. [MASK] cowboy riding his horse [MASK]"
+    },
+    {
+        "original": "[CLS] a man with two small boys making a purchase from a woman. [SEP] the little boys are flying a kite with the man and the woman. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] small boys making [MASK] purchase from [MASK] woman. [MASK] the little boys [MASK] flying [MASK] kite [MASK] the man [MASK] the woman. [MASK]"
+    },
+    {
+        "original": "[CLS] three girls blow out the candles of a cake made of peeps. [SEP] there are three girls and a cake [SEP]",
+        "masked": "[CLS] three girls blow out the candles [MASK] [MASK] cake made [MASK] peeps. [MASK] there [MASK] three girls [MASK] [MASK] cake [MASK]"
+    },
+    {
+        "original": "[CLS] the man in the white shirt holds up a playing card. [SEP] the man is holding up the ace of spades. [SEP]",
+        "masked": "[CLS] the man [MASK] the white shirt holds up [MASK] playing card. [MASK] the man [MASK] holding up the ace [MASK] spade [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] a person is on a four wheeler kicking up a lot of dirt in a dune. [SEP] the person is riding a four wheeler. [SEP]",
+        "masked": "[CLS] [MASK] person [MASK] [MASK] [MASK] four wheeler kicking up [MASK] lot [MASK] dirt [MASK] [MASK] dune. [MASK] the person [MASK] riding [MASK] four wheeler. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people dancing together. [SEP] they are doing the tango. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people dancing together. [MASK] they [MASK] doing the tango. [MASK]"
+    },
+    {
+        "original": "[CLS] 3 young man in hoods standing in the middle of a quiet street facing the camera. [SEP] three people sit by a busy street bareheaded. [SEP]",
+        "masked": "[CLS] 3 young man [MASK] hood [MASK] standing [MASK] the middle [MASK] [MASK] quiet street facing the camera. [MASK] three people sit [MASK] [MASK] busy street barehead [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] two people bicycle on a path separated by small mountains. [SEP] two people are hiking up a mountain. [SEP]",
+        "masked": "[CLS] [MASK] people bicycle [MASK] [MASK] path separated [MASK] small mountains. [MASK] [MASK] people [MASK] hiking up [MASK] mountain. [MASK]"
+    },
+    {
+        "original": "[CLS] boy sitting looking through a glass window at a train station. [SEP] a little boy is walking out of the train. [SEP]",
+        "masked": "[CLS] boy sitting looking through [MASK] glass window at [MASK] train station. [MASK] [MASK] little boy [MASK] walking out [MASK] the train. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a red shirt and a blue hat is sitting on a sidewalk and touching drinking glasses. [SEP] a man sips whisky [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] red shirt [MASK] [MASK] blue hat [MASK] sitting [MASK] [MASK] sidewalk [MASK] touching drinking glasses. [MASK] [MASK] man sip [MASK] whisky [MASK]"
+    },
+    {
+        "original": "[CLS] a man with a large mustache watches the barber conduct his work through the mirror that faces him. [SEP] two people are near each other. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] large mustache watches the barber conduct his work through the mirror that faces him. [MASK] [MASK] people [MASK] near each other. [MASK]"
+    },
+    {
+        "original": "[CLS] in a snowy residential environment, a man with a brown jacket and gray mustache and beard places a hand on a felled log while another man in a blue shirt is blurry on the right side of the photo. [SEP] the men have put out a fire. [SEP]",
+        "masked": "[CLS] [MASK] [MASK] snowy residential environment [MASK] [MASK] man [MASK] [MASK] brown jacket [MASK] gray mustache [MASK] beard places [MASK] hand [MASK] [MASK] fell [MASK] log while another man [MASK] [MASK] blue shirt [MASK] blurry [MASK] the right side [MASK] the photo. [MASK] the men have put out [MASK] fire. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman with green body paint is holding a green and blue hula hoop while her friend ( also in blue and green ) watches. [SEP] the woman is very good at hula hooping. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] green body paint [MASK] holding [MASK] green [MASK] blue hula hoop while her friend [MASK] also [MASK] blue [MASK] green ) watches. [MASK] the woman [MASK] very good at hula hooping. [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a white t - shirt and shorts is rock climbing with other people wearing blue hard hats. [SEP] a man in a black t - shirt and shorts is hiking up a mountain. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] white t [MASK] shirt [MASK] shorts [MASK] rock climbing [MASK] other people wearing blue hard hats. [MASK] [MASK] man [MASK] [MASK] black t [MASK] shirt [MASK] shorts [MASK] hiking up [MASK] mountain. [MASK]"
+    },
+    {
+        "original": "[CLS] workers are scattered among the scaffolding on an older building. [SEP] some workers are digging at a construction site. [SEP]",
+        "masked": "[CLS] workers [MASK] scattered among the scaffolding [MASK] [MASK] older building. [MASK] some workers [MASK] digging at [MASK] construction site. [MASK]"
+    },
+    {
+        "original": "[CLS] a man biking down a tunnel. [SEP] a man is playing video games. [SEP]",
+        "masked": "[CLS] [MASK] man biking down [MASK] tunnel. [MASK] [MASK] man [MASK] playing video games. [MASK]"
+    },
+    {
+        "original": "[CLS] a blond woman is looking at a camera that a brunette woman is holding in front of a wall with several pieces of art on it. [SEP] a blond woman is holding a camera and looking at a wall with several pieces of sharks on it. [SEP]",
+        "masked": "[CLS] [MASK] blond woman [MASK] looking at [MASK] camera that [MASK] brunette woman [MASK] holding [MASK] front [MASK] [MASK] wall [MASK] [MASK] pieces [MASK] art [MASK] it. [MASK] [MASK] blond woman [MASK] holding [MASK] camera [MASK] looking at [MASK] wall [MASK] [MASK] pieces [MASK] sharks [MASK] it. [MASK]"
+    },
+    {
+        "original": "[CLS] a closeup of an older man with glasses speaking. [SEP] the man is talking to himself. [SEP]",
+        "masked": "[CLS] [MASK] closeup [MASK] [MASK] older man [MASK] glasses speaking. [MASK] the man [MASK] talking to himself. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman attends to her laundry in a laundromat. [SEP] nobody is doing laundry at the laundromat. [SEP]",
+        "masked": "[CLS] [MASK] woman attends to her laundry [MASK] [MASK] laundromat. [MASK] nobody [MASK] doing laundry at the laundromat. [MASK]"
+    },
+    {
+        "original": "[CLS] baseball player dressed in blue with a red helmet at home plate in front of a catcher and umpire swinging a bat [SEP] a baseball player has a green and orange helmet. [SEP]",
+        "masked": "[CLS] baseball player dressed [MASK] blue [MASK] [MASK] red helmet at home plate [MASK] front [MASK] [MASK] catcher [MASK] umpire swinging [MASK] bat [MASK] [MASK] baseball player has [MASK] green [MASK] orange helmet. [MASK]"
+    },
+    {
+        "original": "[CLS] two men on stilts and a woman twirling a ribbon, lead a festive parade along the streets, while a woman looks on from her window. [SEP] two men are on stilts while a woman dances between them in the parade. [SEP]",
+        "masked": "[CLS] [MASK] men [MASK] stilts [MASK] [MASK] woman twirling [MASK] ribbon [MASK] lead [MASK] festive parade along the streets [MASK] while [MASK] woman looks [MASK] from her window. [MASK] [MASK] men [MASK] [MASK] stilts while [MASK] woman dances between them [MASK] the parade. [MASK]"
+    },
+    {
+        "original": "[CLS] a little boy watches from his stroller as an older boy with a yellow balloon wanders a few steps away in a fair like setting. [SEP] a boy has a light yellow balloon. [SEP]",
+        "masked": "[CLS] [MASK] little boy watches from his stroller [MASK] [MASK] older boy [MASK] [MASK] yellow balloon wander [MASK] [MASK] few steps away [MASK] [MASK] fair like setting. [MASK] [MASK] boy has [MASK] light yellow balloon. [MASK]"
+    },
+    {
+        "original": "[CLS] a helmeted male airborne on a bike on a dirt road. [SEP] the man fell off his bike. [SEP]",
+        "masked": "[CLS] [MASK] helmet [MASK] male airborne [MASK] [MASK] bike [MASK] [MASK] dirt road. [MASK] the man fell off his bike. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in colorful shorts is surfing under a wave. [SEP] a man is surfing. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] colorful shorts [MASK] surfing under [MASK] wave. [MASK] [MASK] man [MASK] surfing. [MASK]"
+    },
+    {
+        "original": "[CLS] a man sitting on an elephant with a riding seat is talking to a female tourist. [SEP] a man sitting on a camel. [SEP]",
+        "masked": "[CLS] [MASK] man sitting [MASK] [MASK] elephant [MASK] [MASK] riding seat [MASK] talking to [MASK] female tourist. [MASK] [MASK] man sitting [MASK] [MASK] camel. [MASK]"
+    },
+    {
+        "original": "[CLS] a young couple sitting in a black chair smiling. [SEP] two young people sit in a black chair happily. [SEP]",
+        "masked": "[CLS] [MASK] young couple sitting [MASK] [MASK] black chair smiling. [MASK] [MASK] young people sit [MASK] [MASK] black chair happily. [MASK]"
+    },
+    {
+        "original": "[CLS] boy in red and black shirt walks through grass. [SEP] the boy is going to school. [SEP]",
+        "masked": "[CLS] boy [MASK] red [MASK] black shirt walks through grass. [MASK] the boy [MASK] going to school. [MASK]"
+    },
+    {
+        "original": "[CLS] two smiling young girls wearing plastic sunglasses are lying on the grass. [SEP] two girls smile wearing sunglasses. [SEP]",
+        "masked": "[CLS] [MASK] smiling young girls wearing plastic sunglasses [MASK] lying [MASK] the grass. [MASK] [MASK] girls smile wearing sunglasses. [MASK]"
+    },
+    {
+        "original": "[CLS] child plays with pigeon in busy public area while group of people watch him play. [SEP] people watch a child play. [SEP]",
+        "masked": "[CLS] child plays [MASK] pigeon [MASK] busy public area while group [MASK] people watch him play. [MASK] people watch [MASK] child play. [MASK]"
+    },
+    {
+        "original": "[CLS] a young boy wearing an orange jacket is sitting on a log in the fall. [SEP] a boy is sitting on a log. [SEP]",
+        "masked": "[CLS] [MASK] young boy wearing [MASK] orange jacket [MASK] sitting [MASK] [MASK] log [MASK] the fall. [MASK] [MASK] boy [MASK] sitting [MASK] [MASK] log. [MASK]"
+    },
+    {
+        "original": "[CLS] a person is surfing a big wave. [SEP] a person is surfing a big hundred foot wave. [SEP]",
+        "masked": "[CLS] [MASK] person [MASK] surfing [MASK] big wave. [MASK] [MASK] person [MASK] surfing [MASK] big hundred foot wave. [MASK]"
+    },
+    {
+        "original": "[CLS] one tan girl with a wool hat is running and leaning over an object, while another person in a wool hat is sitting on the ground. [SEP] a tan girl runs leans over an object [SEP]",
+        "masked": "[CLS] one tan girl [MASK] [MASK] wool hat [MASK] running [MASK] leaning over [MASK] object [MASK] while another person [MASK] [MASK] wool hat [MASK] sitting [MASK] the ground. [MASK] [MASK] tan girl runs leans over [MASK] object [MASK]"
+    },
+    {
+        "original": "[CLS] a lady looks surprised. [SEP] something happened that just surprised a woman. [SEP]",
+        "masked": "[CLS] [MASK] lady looks surprised. [MASK] something happened that just surprised [MASK] woman. [MASK]"
+    },
+    {
+        "original": "[CLS] a young man in an orange hat walks his bicycle down a street. [SEP] a man broke his new bike. [SEP]",
+        "masked": "[CLS] [MASK] young man [MASK] [MASK] orange hat walks his bicycle down [MASK] street. [MASK] [MASK] man broke his new bike. [MASK]"
+    },
+    {
+        "original": "[CLS] a man and woman in formal attire are standing in a high grass meadow, posing for the photographer, and she has two of her fingers up on one hand behind his head. [SEP] a couple are having a photoshoot. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] woman [MASK] formal attire [MASK] standing [MASK] [MASK] high grass meadow [MASK] posing for the photographer [MASK] [MASK] she has [MASK] [MASK] her fingers up [MASK] one hand behind his head. [MASK] [MASK] couple [MASK] having [MASK] photoshoot. [MASK]"
+    },
+    {
+        "original": "[CLS] a man dances with a woman in a white egyptian costume. [SEP] a man dances with a woman in costume [SEP]",
+        "masked": "[CLS] [MASK] man dances [MASK] [MASK] woman [MASK] [MASK] white egyptian costume. [MASK] [MASK] man dances [MASK] [MASK] woman [MASK] costume [MASK]"
+    },
+    {
+        "original": "[CLS] a dog is on the beach near a ball. [SEP] a cat is playing at the park. [SEP]",
+        "masked": "[CLS] [MASK] dog [MASK] [MASK] the beach near [MASK] ball. [MASK] [MASK] cat [MASK] playing at the park. [MASK]"
+    },
+    {
+        "original": "[CLS] three people are sitting at a small table near a screen with the words,'demos, the business of care.'[SEP] three humans are practicing their square - dancing moves. [SEP]",
+        "masked": "[CLS] three people [MASK] sitting at [MASK] small table near [MASK] screen [MASK] the words [MASK]'demos [MASK] the business [MASK] care.'[MASK] three humans [MASK] practicing their square [MASK] dancing moves. [MASK]"
+    },
+    {
+        "original": "[CLS] two dogs are playing catch in a field. [SEP] the two dogs are resting in the field. [SEP]",
+        "masked": "[CLS] [MASK] dogs [MASK] playing catch [MASK] [MASK] field. [MASK] the [MASK] dogs [MASK] resting [MASK] the field. [MASK]"
+    },
+    {
+        "original": "[CLS] asian people about to perform animal balloons. [SEP] people perform for kids [SEP]",
+        "masked": "[CLS] asian people about to perform animal balloons. [MASK] people perform for kids [MASK]"
+    },
+    {
+        "original": "[CLS] man sitting on bench with a suitcase in front of paddington sign. [SEP] a man laying down [SEP]",
+        "masked": "[CLS] man sitting [MASK] bench [MASK] [MASK] suitcase [MASK] front [MASK] paddington sign. [MASK] [MASK] man laying down [MASK]"
+    },
+    {
+        "original": "[CLS] two young ladies walking down the street together. [SEP] there are two woman in this picture, and they are both outside. [SEP]",
+        "masked": "[CLS] [MASK] young ladies walking down the street together. [MASK] there [MASK] [MASK] woman [MASK] this picture [MASK] [MASK] they [MASK] both outside. [MASK]"
+    },
+    {
+        "original": "[CLS] a male guitar player is vigorously singing a not to a song in a poorly lit room. [SEP] a man is singing indoors. [SEP]",
+        "masked": "[CLS] [MASK] male guitar player [MASK] vigorously singing [MASK] not to [MASK] song [MASK] [MASK] poorly lit room. [MASK] [MASK] man [MASK] singing indoors. [MASK]"
+    },
+    {
+        "original": "[CLS] a man and a young girl swimming. [SEP] a father and daughter swim together [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] young girl swimming. [MASK] [MASK] father [MASK] daughter swim together [MASK]"
+    },
+    {
+        "original": "[CLS] a man playing the guitar while smoking a cigarette. [SEP] the man is also playing the drums [SEP]",
+        "masked": "[CLS] [MASK] man playing the guitar while smoking [MASK] cigarette. [MASK] the man [MASK] also playing the drums [MASK]"
+    },
+    {
+        "original": "[CLS] a man talks to two guards as he holds a drink. [SEP] the man is holding a drink. [SEP]",
+        "masked": "[CLS] [MASK] man talks to [MASK] guards [MASK] he holds [MASK] drink. [MASK] the man [MASK] holding [MASK] drink. [MASK]"
+    },
+    {
+        "original": "[CLS] people sitting in a dim restaurant eating. [SEP] people are in a restaurant celebrating an anniversary. [SEP]",
+        "masked": "[CLS] people sitting [MASK] [MASK] dim restaurant eating. [MASK] people [MASK] [MASK] [MASK] restaurant celebrating [MASK] anniversary. [MASK]"
+    },
+    {
+        "original": "[CLS] girl in a red coat, blue head wrap and jeans is making a snow angel. [SEP] a girl outside plays in the snow. [SEP]",
+        "masked": "[CLS] girl [MASK] [MASK] red coat [MASK] blue head wrap [MASK] jeans [MASK] making [MASK] snow angel. [MASK] [MASK] girl outside plays [MASK] the snow. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman wearing a straw hat is sitting among a variety of different foods while holding a drink. [SEP] a woman is sitting near food. [SEP]",
+        "masked": "[CLS] [MASK] woman wearing [MASK] straw hat [MASK] sitting among [MASK] variety [MASK] different foods while holding [MASK] drink. [MASK] [MASK] woman [MASK] sitting near food. [MASK]"
+    },
+    {
+        "original": "[CLS] a child dressed in purple clothing and a hat runs in splashing water while a man and a small boy walk nearby. [SEP] a cat sleeps on the couch [SEP]",
+        "masked": "[CLS] [MASK] child dressed [MASK] purple clothing [MASK] [MASK] hat runs [MASK] splashing water while [MASK] man [MASK] [MASK] small boy walk nearby. [MASK] [MASK] cat sleeps [MASK] the couch [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a blue jacket holding a handsaw sawing a pipe on top of a wood fence. [SEP] nobody is working. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] blue jacket holding [MASK] handsaw sawing [MASK] pipe [MASK] top [MASK] [MASK] wood fence. [MASK] nobody [MASK] working. [MASK]"
+    },
+    {
+        "original": "[CLS] a person with an orange shovel is shoveling snow. [SEP] the rain is pouring in the desert [SEP]",
+        "masked": "[CLS] [MASK] person [MASK] [MASK] orange shovel [MASK] shoveling snow. [MASK] the rain [MASK] pouring [MASK] the desert [MASK]"
+    },
+    {
+        "original": "[CLS] woman in a blue dress and carrying a black purse, rides a scooter down the street. [SEP] the women rides a scooter down the street [SEP]",
+        "masked": "[CLS] woman [MASK] [MASK] blue dress [MASK] carrying [MASK] black purse [MASK] rides [MASK] scooter down the street. [MASK] the women rides [MASK] scooter down the street [MASK]"
+    },
+    {
+        "original": "[CLS] girls dressed in red stand in a line. [SEP] it is a special day. [SEP]",
+        "masked": "[CLS] girls dressed [MASK] red stand [MASK] [MASK] line. [MASK] it [MASK] [MASK] special day. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy dressed for summer in a green shirt and kahki shorts extends food to a reindeer in a petting zoo. [SEP] a boy alien dressed for summer in a green shirt and kahki shorts [SEP]",
+        "masked": "[CLS] [MASK] boy dressed for summer [MASK] [MASK] green shirt [MASK] kahki shorts extends food to [MASK] reindeer [MASK] [MASK] petting zoo. [MASK] [MASK] boy alien dressed for summer [MASK] [MASK] green shirt [MASK] kahki shorts [MASK]"
+    },
+    {
+        "original": "[CLS] a young boy sits outside in a grassy field with his back turned towards the viewer - he is holding a wooden toy that can be spun between your hands and launched into the air. [SEP] a young boy has fun playing outdoors. [SEP]",
+        "masked": "[CLS] [MASK] young boy sits outside [MASK] [MASK] grassy field [MASK] his back turned towards the viewer [MASK] he [MASK] holding [MASK] wooden toy that can be spun between your hands [MASK] launched into the air. [MASK] [MASK] young boy has fun playing outdoors. [MASK]"
+    },
+    {
+        "original": "[CLS] a baby sitting in a highchair looking delighted. [SEP] the baby is smiling [SEP]",
+        "masked": "[CLS] [MASK] baby sitting [MASK] [MASK] highchair looking delighted. [MASK] the baby [MASK] smiling [MASK]"
+    },
+    {
+        "original": "[CLS] two dirt bikers - one in black and red, sporting number 64, the other in blue and white displaying a red'21'- round the corner of a tree - lined track. [SEP] the two bikers, both friends and competitors, round the final curve of the final race of the season. [SEP]",
+        "masked": "[CLS] [MASK] dirt biker [MASK] [MASK] one [MASK] black [MASK] red [MASK] sporting number 64 [MASK] the other [MASK] blue [MASK] white displaying [MASK] red'21'[MASK] round the corner [MASK] [MASK] tree [MASK] lined track. [MASK] the [MASK] biker [MASK] [MASK] both friends [MASK] competitors [MASK] round the final curve [MASK] the final race [MASK] the season. [MASK]"
+    },
+    {
+        "original": "[CLS] three people hiking up a mountain with a river and other mountains in the background. [SEP] three friends hiking the appalachain trail. [SEP]",
+        "masked": "[CLS] three people hiking up [MASK] mountain [MASK] [MASK] river [MASK] other mountains [MASK] the background. [MASK] three friends hiking the appalachain trail. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a purple and blue shirt and shorts is getting ready to hit a golf ball. [SEP] a man is on a golf course. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] purple [MASK] blue shirt [MASK] shorts [MASK] getting ready to hit [MASK] golf ball. [MASK] [MASK] man [MASK] [MASK] [MASK] golf course. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people building gingerbread houses. [SEP] a man is yelling at his son about the broken television behind them. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people building gingerbread houses. [MASK] [MASK] man [MASK] yelling at his son about the broken television behind them. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman wearing bike shorts and a skirt is riding a bike and carrying a shoulder bag. [SEP] a woman on a bike. [SEP]",
+        "masked": "[CLS] [MASK] woman wearing bike shorts [MASK] [MASK] skirt [MASK] riding [MASK] bike [MASK] carrying [MASK] shoulder bag. [MASK] [MASK] woman [MASK] [MASK] bike. [MASK]"
+    },
+    {
+        "original": "[CLS] a black man wearing a down jacket with his arms spread and holding a pink comb. [SEP] someone wearing a cotton shirt was looking at a green hair comb. [SEP]",
+        "masked": "[CLS] [MASK] black man wearing [MASK] down jacket [MASK] his arms spread [MASK] holding [MASK] pink comb. [MASK] someone wearing [MASK] cotton shirt was looking at [MASK] green hair comb. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman and a child both wearing red outfits walking up a street [SEP] two adults on a street [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] child both wearing red outfits walking up [MASK] street [MASK] [MASK] adults [MASK] [MASK] street [MASK]"
+    },
+    {
+        "original": "[CLS] a man and woman look through cd's at a street vendor. [SEP] a man and women taking a break [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] woman look through cd's at [MASK] street vendor. [MASK] [MASK] man [MASK] women taking [MASK] break [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a white shirt and a hat, riding his bike, makes an obscene gesture to the photographer [SEP] the photographer has angered that bike rider somehow. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] white shirt [MASK] [MASK] hat [MASK] riding his bike [MASK] makes [MASK] obscene gesture to the photographer [MASK] the photographer has angered that bike rider somehow. [MASK]"
+    },
+    {
+        "original": "[CLS] people jump over a mountain crevasse on a rope. [SEP] people are jumping outside. [SEP]",
+        "masked": "[CLS] people jump over [MASK] mountain crevasse [MASK] [MASK] rope. [MASK] people [MASK] jumping outside. [MASK]"
+    },
+    {
+        "original": "[CLS] two little boys wearing athletic jerseys are washing their hands in a public restroom. [SEP] the boys are bare - chested. [SEP]",
+        "masked": "[CLS] [MASK] little boys wearing athletic jerseys [MASK] washing their hands [MASK] [MASK] public restroom. [MASK] the boys [MASK] bare [MASK] chested. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of kids is splashing in deep water nearby a rock formation. [SEP] the kids are in deep water [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] kids [MASK] splashing [MASK] deep water nearby [MASK] rock formation. [MASK] the kids [MASK] [MASK] deep water [MASK]"
+    },
+    {
+        "original": "[CLS] cityscape with four men on bikes serving as the focal point of picture. [SEP] bike rental as low as 9. 99 an hour. [SEP]",
+        "masked": "[CLS] cityscape [MASK] four men [MASK] bikes serving [MASK] the focal point [MASK] picture. [MASK] bike rental [MASK] low [MASK] 9. 99 [MASK] hour. [MASK]"
+    },
+    {
+        "original": "[CLS] two hikers are backpacking up a snow slope. [SEP] two people are hiking with backpacks on in warm weather. [SEP]",
+        "masked": "[CLS] [MASK] hikers [MASK] backpacking up [MASK] snow slope. [MASK] [MASK] people [MASK] hiking [MASK] backpack [MASK] [MASK] [MASK] warm weather. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a black business suit stands upright next to a man wearing blue and leaning against a railing. [SEP] a man in a black suit is standing next to a man in a blue outfit. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] black business suit stands upright next to [MASK] man wearing blue [MASK] leaning against [MASK] railing. [MASK] [MASK] man [MASK] [MASK] black suit [MASK] standing next to [MASK] man [MASK] [MASK] blue outfit. [MASK]"
+    },
+    {
+        "original": "[CLS] a large group of people walking in a busy city at night. [SEP] people are eating lunch in a restaurant. [SEP]",
+        "masked": "[CLS] [MASK] large group [MASK] people walking [MASK] [MASK] busy city at night. [MASK] people [MASK] eating lunch [MASK] [MASK] restaurant. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman wearing a red coat stands on a wood floor in front of several paintings while two girls sit on the floor at her feet. [SEP] woman takes a break at a museum while her children sit by her feet. [SEP]",
+        "masked": "[CLS] [MASK] woman wearing [MASK] red coat stands [MASK] [MASK] wood floor [MASK] front [MASK] [MASK] paintings while [MASK] girls sit [MASK] the floor at her feet. [MASK] woman takes [MASK] break at [MASK] museum while her children sit [MASK] her feet. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy and girl kissing in the sunset. [SEP] a boy kisses his girlfriend on the beach. [SEP]",
+        "masked": "[CLS] [MASK] boy [MASK] girl kissing [MASK] the sunset. [MASK] [MASK] boy kisses his girlfriend [MASK] the beach. [MASK]"
+    },
+    {
+        "original": "[CLS] a person wearing orange stockings and chunky boots has her legs stretched out on the grass. [SEP] a person is wearing boots. [SEP]",
+        "masked": "[CLS] [MASK] person wearing orange stockings [MASK] chunky boots has her legs stretched out [MASK] the grass. [MASK] [MASK] person [MASK] wearing boots. [MASK]"
+    },
+    {
+        "original": "[CLS] a kneeling man bends his ear to listen on another in front of a guitar and audio equipment. [SEP] two men are near audio equipment. [SEP]",
+        "masked": "[CLS] [MASK] kneeling man bends his ear to listen [MASK] another [MASK] front [MASK] [MASK] guitar [MASK] audio equipment. [MASK] [MASK] men [MASK] near audio equipment. [MASK]"
+    },
+    {
+        "original": "[CLS] an asian man is praying at a buddhist temple. [SEP] the man has been buddhist his whole life. [SEP]",
+        "masked": "[CLS] [MASK] asian man [MASK] praying at [MASK] buddhist temple. [MASK] the man has been buddhist his whole life. [MASK]"
+    },
+    {
+        "original": "[CLS] children are playing outside in a fountain. [SEP] some children a outside playing near the water. [SEP]",
+        "masked": "[CLS] children [MASK] playing outside [MASK] [MASK] fountain. [MASK] some children [MASK] outside playing near the water. [MASK]"
+    },
+    {
+        "original": "[CLS] two boys in a canoe in front of a larger boat with a storm coming in. [SEP] two boys in a sailboat [SEP]",
+        "masked": "[CLS] [MASK] boys [MASK] [MASK] canoe [MASK] front [MASK] [MASK] larger boat [MASK] [MASK] storm coming [MASK]. [MASK] [MASK] boys [MASK] [MASK] sailboat [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in a black shirt looking at a bicycle. [SEP] a woman in green sleeps on a couch. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] black shirt looking at [MASK] bicycle. [MASK] [MASK] woman [MASK] green sleeps [MASK] [MASK] couch. [MASK]"
+    },
+    {
+        "original": "[CLS] a skateboarding youth does a trick on a rail. [SEP] a man painting a tree. [SEP]",
+        "masked": "[CLS] [MASK] skateboarding youth does [MASK] trick [MASK] [MASK] rail. [MASK] [MASK] man painting [MASK] tree. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people in front of some tan colored tents from the american parkinsons disease association. [SEP] superman single handedly cures the disease [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people [MASK] front [MASK] some tan colored tents from the american parkinson [MASK] disease association. [MASK] superman single handedly cure [MASK] the disease [MASK]"
+    },
+    {
+        "original": "[CLS] a person is climbing a wooden ladder on a very steep, jagged, rock cliff. [SEP] a person is mountain climbing using nothing but his hands and the rocks. [SEP]",
+        "masked": "[CLS] [MASK] person [MASK] climbing [MASK] wooden ladder [MASK] [MASK] very steep [MASK] jagged [MASK] rock cliff. [MASK] [MASK] person [MASK] mountain climbing using nothing but his hands [MASK] the rocks. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is throwing something into the road. [SEP] a man paints a house. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] throwing something into the road. [MASK] [MASK] man paints [MASK] house. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people examine a boat with an orange flag that is sitting on sand next to a body of water. [SEP] people don't like sand. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people examine [MASK] boat [MASK] [MASK] orange flag that [MASK] sitting [MASK] sand next to [MASK] body [MASK] water. [MASK] people don't like sand. [MASK]"
+    },
+    {
+        "original": "[CLS] the people await to cross the street while walking the dog. [SEP] people are with a dog [SEP]",
+        "masked": "[CLS] the people await to cross the street while walking the dog. [MASK] people [MASK] [MASK] [MASK] dog [MASK]"
+    },
+    {
+        "original": "[CLS] five people standing on a stage, getting ready to perform, who are unrecognizable due to the lack of lighting. [SEP] in a dim room, several actors who can barely see each other, are getting ready to act. [SEP]",
+        "masked": "[CLS] five people standing [MASK] [MASK] stage [MASK] getting ready to perform [MASK] who [MASK] unrecognizable due to the lack [MASK] lighting. [MASK] [MASK] [MASK] dim room [MASK] [MASK] actors who can barely see each other [MASK] [MASK] getting ready to act. [MASK]"
+    },
+    {
+        "original": "[CLS] it is a march of people of different backgrounds all walking and one guy in a green shirt holds a flag. [SEP] a man holds a flag. [SEP]",
+        "masked": "[CLS] it [MASK] [MASK] march [MASK] people [MASK] different backgrounds all walking [MASK] one guy [MASK] [MASK] green shirt holds [MASK] flag. [MASK] [MASK] man holds [MASK] flag. [MASK]"
+    },
+    {
+        "original": "[CLS] a young man standing on one foot in colorful bowling shoes after throwing the ball. [SEP] a child is standing on one foot. [SEP]",
+        "masked": "[CLS] [MASK] young man standing [MASK] one foot [MASK] colorful bowling shoes after throwing the ball. [MASK] [MASK] child [MASK] standing [MASK] one foot. [MASK]"
+    },
+    {
+        "original": "[CLS] four men playing drums in very orange lighting while one of them is also drinking something out of a bottle. [SEP] the men are musicians [SEP]",
+        "masked": "[CLS] four men playing drums [MASK] very orange lighting while one [MASK] them [MASK] also drinking something out [MASK] [MASK] bottle. [MASK] the men [MASK] musicians [MASK]"
+    },
+    {
+        "original": "[CLS] two men cooking, one stirring a pot while making a funny face while the other points at him. [SEP] two men are reading books. [SEP]",
+        "masked": "[CLS] [MASK] men cooking [MASK] one stirring [MASK] pot while making [MASK] funny face while the other points at him. [MASK] [MASK] men [MASK] reading books. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is smiling at a woman in a white dress. [SEP] the man is friendly. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] smiling at [MASK] woman [MASK] [MASK] white dress. [MASK] the man [MASK] friendly. [MASK]"
+    },
+    {
+        "original": "[CLS] a person in a large pink triangle - shaped costume waves as a man and a woman dressed in matching brightly - colored striped and polka - dotted outfits smile back. [SEP] the person is marching in a parade. [SEP]",
+        "masked": "[CLS] [MASK] person [MASK] [MASK] large pink triangle [MASK] shaped costume waves [MASK] [MASK] man [MASK] [MASK] woman dressed [MASK] matching brightly [MASK] colored striped [MASK] polka [MASK] dotted outfits smile back. [MASK] the person [MASK] marching [MASK] [MASK] parade. [MASK]"
+    },
+    {
+        "original": "[CLS] a man with an afro and bandanna playing electric guitar. [SEP] the guy with the afro is playing on the guitar for his mom [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] afro [MASK] bandanna playing electric guitar. [MASK] the guy [MASK] the afro [MASK] playing [MASK] the guitar for his mom [MASK]"
+    },
+    {
+        "original": "[CLS] a couple is eating outside at a table and he is pointing at something. [SEP] a couple is eating inside at a table and he is pointing at something. [SEP]",
+        "masked": "[CLS] [MASK] couple [MASK] eating outside at [MASK] table [MASK] he [MASK] pointing at something. [MASK] [MASK] couple [MASK] eating inside at [MASK] table [MASK] he [MASK] pointing at something. [MASK]"
+    },
+    {
+        "original": "[CLS] asian people about to perform animal balloons. [SEP] dog looks at the pond [SEP]",
+        "masked": "[CLS] asian people about to perform animal balloons. [MASK] dog looks at the pond [MASK]"
+    },
+    {
+        "original": "[CLS] a man shoveling snow off the roof of a building. [SEP] a young man working in the snow. [SEP]",
+        "masked": "[CLS] [MASK] man shoveling snow off the roof [MASK] [MASK] building. [MASK] [MASK] young man working [MASK] the snow. [MASK]"
+    },
+    {
+        "original": "[CLS] a band playing on stage in a club. [SEP] the stage crew is cleaning the stage [SEP]",
+        "masked": "[CLS] [MASK] band playing [MASK] stage [MASK] [MASK] club. [MASK] the stage crew [MASK] cleaning the stage [MASK]"
+    },
+    {
+        "original": "[CLS] a mother holds her newborn baby. [SEP] a father holding a ball. [SEP]",
+        "masked": "[CLS] [MASK] mother holds her newborn baby. [MASK] [MASK] father holding [MASK] ball. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in an overcoat putting on his gloves at a subway station. [SEP] a person is waiting for the train. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] overcoat putting [MASK] his gloves at [MASK] subway station. [MASK] [MASK] person [MASK] waiting for the train. [MASK]"
+    },
+    {
+        "original": "[CLS] a person just about to stand up while water - skiing, while people in the background watch and take photos. [SEP] the person water - skiing is about to hit a big wave. [SEP]",
+        "masked": "[CLS] [MASK] person just about to stand up while water [MASK] skiing [MASK] while people [MASK] the background watch [MASK] take photos. [MASK] the person water [MASK] skiing [MASK] about to hit [MASK] big wave. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in an apron is looking for bread. [SEP] a woman is wearing an apron. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] apron [MASK] looking for bread. [MASK] [MASK] woman [MASK] wearing [MASK] apron. [MASK]"
+    },
+    {
+        "original": "[CLS] a car is loaded with items on the top. [SEP] the car has stuff on top. [SEP]",
+        "masked": "[CLS] [MASK] car [MASK] loaded [MASK] items [MASK] the top. [MASK] the car has stuff [MASK] top. [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing black pants rides along a concrete ledge on rollerblades. [SEP] the man may lose his balance. [SEP]",
+        "masked": "[CLS] [MASK] man wearing black pants rides along [MASK] concrete ledge [MASK] rollerblades. [MASK] the man may lose his balance. [MASK]"
+    },
+    {
+        "original": "[CLS] an oriental woman cleaning wood outside from a bucket. [SEP] a woman is cleaning wood. [SEP]",
+        "masked": "[CLS] [MASK] oriental woman cleaning wood outside from [MASK] bucket. [MASK] [MASK] woman [MASK] cleaning wood. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in a pink top is holding a glass bottle in one hand and a stitch doll in the other. [SEP] the top is pink [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] pink top [MASK] holding [MASK] glass bottle [MASK] one hand [MASK] [MASK] stitch doll [MASK] the other. [MASK] the top [MASK] pink [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people examine a boat with an orange flag that is sitting on sand next to a body of water. [SEP] people sit on a beach. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people examine [MASK] boat [MASK] [MASK] orange flag that [MASK] sitting [MASK] sand next to [MASK] body [MASK] water. [MASK] people sit [MASK] [MASK] beach. [MASK]"
+    },
+    {
+        "original": "[CLS] a crowd and two males dressed in different cultural attire playing the drums. [SEP] two men in cultural garb play the drums for a crowd. [SEP]",
+        "masked": "[CLS] [MASK] crowd [MASK] [MASK] males dressed [MASK] different cultural attire playing the drums. [MASK] [MASK] men [MASK] cultural garb play the drums for [MASK] crowd. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman carries a small, unhappy child in a busy street scene. [SEP] woman carrying child to the store [SEP]",
+        "masked": "[CLS] [MASK] woman carries [MASK] small [MASK] unhappy child [MASK] [MASK] busy street scene. [MASK] woman carrying child to the store [MASK]"
+    },
+    {
+        "original": "[CLS] a brown dog runs through a grassy field [SEP] a brown dog runs outside. [SEP]",
+        "masked": "[CLS] [MASK] brown dog runs through [MASK] grassy field [MASK] [MASK] brown dog runs outside. [MASK]"
+    },
+    {
+        "original": "[CLS] the man walks among the large trees. [SEP] the man is lost in the woods. [SEP]",
+        "masked": "[CLS] the man walks among the large trees. [MASK] the man [MASK] lost [MASK] the woods. [MASK]"
+    },
+    {
+        "original": "[CLS] a person doing a trick on a snowboard. [SEP] a person is ice skating. [SEP]",
+        "masked": "[CLS] [MASK] person doing [MASK] trick [MASK] [MASK] snowboard. [MASK] [MASK] person [MASK] ice skating. [MASK]"
+    },
+    {
+        "original": "[CLS] a man puts his hands up while telling an amusing story to his friend with a beard. [SEP] the man is perplexed by the events. [SEP]",
+        "masked": "[CLS] [MASK] man puts his hands up while telling [MASK] amusing story to his friend [MASK] [MASK] beard. [MASK] the man [MASK] perplex [MASK] [MASK] the events. [MASK]"
+    },
+    {
+        "original": "[CLS] a group stands and watches two men, apparently dressed in some sort of costume, wrestle on the ground. [SEP] the people are betting money on this match [SEP]",
+        "masked": "[CLS] [MASK] group stands [MASK] watches [MASK] men [MASK] apparently dressed [MASK] some sort [MASK] costume [MASK] wrestle [MASK] the ground. [MASK] the people [MASK] betting money [MASK] [MASK] match [MASK]"
+    },
+    {
+        "original": "[CLS] a fat woman wearing faint blue top is blowing soap bubble. [SEP] a fat woman is wearing pants. [SEP]",
+        "masked": "[CLS] [MASK] fat woman wearing faint blue top [MASK] blowing soap bubble. [MASK] [MASK] fat woman [MASK] wearing pants. [MASK]"
+    },
+    {
+        "original": "[CLS] two men are drumming, one is standing and one is sitting down. [SEP] two people are drumming. [SEP]",
+        "masked": "[CLS] [MASK] men [MASK] drumming [MASK] one [MASK] standing [MASK] one [MASK] sitting down. [MASK] [MASK] people [MASK] drumming. [MASK]"
+    },
+    {
+        "original": "[CLS] a young boy vocalizes in to a microphone held by a blond woman in black. [SEP] a woman teaching a boy to sing. [SEP]",
+        "masked": "[CLS] [MASK] young boy vocalizes [MASK] to [MASK] microphone held [MASK] [MASK] blond woman [MASK] black. [MASK] [MASK] woman teaching [MASK] boy to sing. [MASK]"
+    },
+    {
+        "original": "[CLS] a ribbon dancer is leaping through the air with her head back during a competition, green ribbon behind her. [SEP] a dancer performs [SEP]",
+        "masked": "[CLS] [MASK] ribbon dancer [MASK] leaping through the air [MASK] her head back during [MASK] competition [MASK] green ribbon behind her. [MASK] [MASK] dancer performs [MASK]"
+    },
+    {
+        "original": "[CLS] a woman is holding a large check for kids food basket. [SEP] she is stealing from them. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] holding [MASK] large check for kids food basket. [MASK] she [MASK] stealing from them. [MASK]"
+    },
+    {
+        "original": "[CLS] the person is reading a book. [SEP] a person reads their favorite novel. [SEP]",
+        "masked": "[CLS] the person [MASK] reading [MASK] book. [MASK] [MASK] person reads their favorite novel. [MASK]"
+    },
+    {
+        "original": "[CLS] a child stands in a shower with clothes on. [SEP] a child's clothes are full of mud in the shower [SEP]",
+        "masked": "[CLS] [MASK] child stands [MASK] [MASK] shower [MASK] clothes [MASK]. [MASK] [MASK] child's clothes [MASK] full [MASK] mud [MASK] the shower [MASK]"
+    },
+    {
+        "original": "[CLS] three sailboats with white sails are seen on a riverbank. [SEP] the boats are racing. [SEP]",
+        "masked": "[CLS] three sailboats [MASK] white sails [MASK] seen [MASK] [MASK] riverbank. [MASK] the boats [MASK] racing. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in a hooded type coat is holding a golden colored axe. [SEP] a man holds a sword. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] hooded type coat [MASK] holding [MASK] golden colored axe. [MASK] [MASK] man holds [MASK] sword. [MASK]"
+    },
+    {
+        "original": "[CLS] people sitting on stools looking outside. [SEP] people look at a movie screen. [SEP]",
+        "masked": "[CLS] people sitting [MASK] stool [MASK] looking outside. [MASK] people look at [MASK] movie screen. [MASK]"
+    },
+    {
+        "original": "[CLS] four people wearing backpacks walking in a line along a mountain trail. [SEP] no one is on the mountain trail [SEP]",
+        "masked": "[CLS] four people wearing backpack [MASK] walking [MASK] [MASK] line along [MASK] mountain trail. [MASK] no one [MASK] [MASK] the mountain trail [MASK]"
+    },
+    {
+        "original": "[CLS] rock band on stage immersed in light show. [SEP] some of the lights are yellow. [SEP]",
+        "masked": "[CLS] rock band [MASK] stage immersed [MASK] light show. [MASK] some [MASK] the lights [MASK] yellow. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is holding a child on his shoulders. [SEP] a child is going for a ride on that man. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] holding [MASK] child [MASK] his shoulders. [MASK] [MASK] child [MASK] going for [MASK] ride [MASK] that man. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman and a young girl are sitting down and smiling. [SEP] a mother and daughter are chatting. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] young girl [MASK] sitting down [MASK] smiling. [MASK] [MASK] mother [MASK] daughter [MASK] chatting. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of women around a table to fabric. [SEP] the women are sorority sisters. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] women around [MASK] table to fabric. [MASK] the women [MASK] sorority sisters. [MASK]"
+    },
+    {
+        "original": "[CLS] a shirtless man with a white hat and no shoes sitting crisscross with his back against the wall holding up a white plastic cup. [SEP] a man is waiting for someone [SEP]",
+        "masked": "[CLS] [MASK] shirtless man [MASK] [MASK] white hat [MASK] no shoes sitting crisscross [MASK] his back against the wall holding up [MASK] white plastic cup. [MASK] [MASK] man [MASK] waiting for someone [MASK]"
+    },
+    {
+        "original": "[CLS] a man with a bat swings at a ball coming towards him. [SEP] the man is swinging [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] bat swings at [MASK] ball coming towards him. [MASK] the man [MASK] swinging [MASK]"
+    },
+    {
+        "original": "[CLS] a little girl carries a younger girl on the sidewalk. [SEP] the man caries the girl [SEP]",
+        "masked": "[CLS] [MASK] little girl carries [MASK] younger girl [MASK] the sidewalk. [MASK] the man caries the girl [MASK]"
+    },
+    {
+        "original": "[CLS] there are two people walking in the sand. [SEP] there are five people walking in the sand with drums. [SEP]",
+        "masked": "[CLS] there [MASK] [MASK] people walking [MASK] the sand. [MASK] there [MASK] five people walking [MASK] the sand [MASK] drums. [MASK]"
+    },
+    {
+        "original": "[CLS] two boys run to the entryway of an old building. [SEP] a couple of children are eating popsicles at a birthday party. [SEP]",
+        "masked": "[CLS] [MASK] boys run to the entryway [MASK] [MASK] old building. [MASK] [MASK] couple [MASK] children [MASK] eating popsicles at [MASK] birthday party. [MASK]"
+    },
+    {
+        "original": "[CLS] man in robe making designs on dirt ground. [SEP] an artist preparing some sketches in the dirt. [SEP]",
+        "masked": "[CLS] man [MASK] robe making designs [MASK] dirt ground. [MASK] [MASK] artist preparing some sketches [MASK] the dirt. [MASK]"
+    },
+    {
+        "original": "[CLS] a man with no shirt on is holding a football. [SEP] a man rolls on the ground on fire. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] no shirt [MASK] [MASK] holding [MASK] football. [MASK] [MASK] man rolls [MASK] the ground [MASK] fire. [MASK]"
+    },
+    {
+        "original": "[CLS] a young girl standing in front of a row of yellow chairs. [SEP] a funny person standing. [SEP]",
+        "masked": "[CLS] [MASK] young girl standing [MASK] front [MASK] [MASK] row [MASK] yellow chairs. [MASK] [MASK] funny person standing. [MASK]"
+    },
+    {
+        "original": "[CLS] a gymnastics performer is in mid - pose as she completes her jump. [SEP] a gymnastics performer is stretching. [SEP]",
+        "masked": "[CLS] [MASK] gymnastics performer [MASK] [MASK] [MASK] [MASK] pose [MASK] she completes her jump. [MASK] [MASK] gymnastics performer [MASK] stretching. [MASK]"
+    },
+    {
+        "original": "[CLS] some folks pick out the food they want at a party. [SEP] the party - goers are perusing the buffet. [SEP]",
+        "masked": "[CLS] some folks pick out the food they want at [MASK] party. [MASK] the party [MASK] goers [MASK] perusing the buffet. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman with a blue shirt and colorful hair has just thrown the bowling ball. [SEP] a women is sleeping. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] blue shirt [MASK] colorful hair has just thrown the bowling ball. [MASK] [MASK] women [MASK] sleeping. [MASK]"
+    },
+    {
+        "original": "[CLS] someone with a long pole that appears to have a spike on the end is pointing it at a red balloon on the other side of the wall from him. [SEP] a person with a long object stands on one side of a wall and a balloon floats on the other side. [SEP]",
+        "masked": "[CLS] someone [MASK] [MASK] long pole that appears to have [MASK] spike [MASK] the end [MASK] pointing it at [MASK] red balloon [MASK] the other side [MASK] the wall from him. [MASK] [MASK] person [MASK] [MASK] long object stands [MASK] one side [MASK] [MASK] wall [MASK] [MASK] balloon floats [MASK] the other side. [MASK]"
+    },
+    {
+        "original": "[CLS] man recording a video of a woman. [SEP] a woman is being recorded by a man. [SEP]",
+        "masked": "[CLS] man recording [MASK] video [MASK] [MASK] woman. [MASK] [MASK] woman [MASK] being recorded [MASK] [MASK] man. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman is walking with a full shopping cart away from a trader joe's. [SEP] a woman is leaving trader joe's with a full shopping cart of things she just stole. [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] walking [MASK] [MASK] full shopping cart away from [MASK] trader joe's. [MASK] [MASK] woman [MASK] leaving trader joe's [MASK] [MASK] full shopping cart [MASK] things she just stole. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in an apron smiles as he pokes a frying donut with a little metal stick. [SEP] the man is in the kitchen of a restaurant. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] apron smiles [MASK] he poke [MASK] [MASK] frying donut [MASK] [MASK] little metal stick. [MASK] the man [MASK] [MASK] the kitchen [MASK] [MASK] restaurant. [MASK]"
+    },
+    {
+        "original": "[CLS] three soccer players, two in orange one in yellow, running for the ball on a soccer field. [SEP] the guy chased his dog down the street. [SEP]",
+        "masked": "[CLS] three soccer players [MASK] [MASK] [MASK] orange one [MASK] yellow [MASK] running for the ball [MASK] [MASK] soccer field. [MASK] the guy chased his dog down the street. [MASK]"
+    },
+    {
+        "original": "[CLS] a golfer shoots his ball out of a sand trap. [SEP] a duffer hits to the green using a sand wedge. [SEP]",
+        "masked": "[CLS] [MASK] golfer shoots his ball out [MASK] [MASK] sand trap. [MASK] [MASK] duffer hits to the green using [MASK] sand wedge. [MASK]"
+    },
+    {
+        "original": "[CLS] 4 children and 1 adult look at an armadillo on a grassy hill with 2 trees. [SEP] a family visits the zoo. [SEP]",
+        "masked": "[CLS] 4 children [MASK] 1 adult look at [MASK] armadillo [MASK] [MASK] grassy hill [MASK] 2 trees. [MASK] [MASK] family visits the zoo. [MASK]"
+    },
+    {
+        "original": "[CLS] the backs of a woman and her dog as they walk away from the camera with the dog on a red leash and her in a green tank top. [SEP] a dog on a red leash walking away. [SEP]",
+        "masked": "[CLS] the backs [MASK] [MASK] woman [MASK] her dog [MASK] they walk away from the camera [MASK] the dog [MASK] [MASK] red leash [MASK] her [MASK] [MASK] green tank top. [MASK] [MASK] dog [MASK] [MASK] red leash walking away. [MASK]"
+    },
+    {
+        "original": "[CLS] a man jumps off a cliff with a city view below. [SEP] man jumps off cliff near city. [SEP]",
+        "masked": "[CLS] [MASK] man jumps off [MASK] cliff [MASK] [MASK] city view below. [MASK] man jumps off cliff near city. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy lying on a hospital bed with his leg hanging over the side. [SEP] a kid is at the hospital [SEP]",
+        "masked": "[CLS] [MASK] boy lying [MASK] [MASK] hospital bed [MASK] his leg hanging over the side. [MASK] [MASK] kid [MASK] at the hospital [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a blue shirt emerges from a doorway. [SEP] a man is sitting at a table. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] blue shirt emerges from [MASK] doorway. [MASK] [MASK] man [MASK] sitting at [MASK] table. [MASK]"
+    },
+    {
+        "original": "[CLS] an olympian leaps over an obstacle. [SEP] an old woman sleeps in the kitchen. [SEP]",
+        "masked": "[CLS] [MASK] olympian leaps over [MASK] obstacle. [MASK] [MASK] old woman sleeps [MASK] the kitchen. [MASK]"
+    },
+    {
+        "original": "[CLS] the festivities of the latin celebration has brought many visitors and enthusiastic, colorful, performers to the city. [SEP] many people populate the city. [SEP]",
+        "masked": "[CLS] the festivities [MASK] the latin celebration has brought many visitors [MASK] enthusiastic [MASK] colorful [MASK] performers to the city. [MASK] many people populate the city. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is looking at the camera posing for a photo with his arm around a woman who is looking away. [SEP] the man is looking at the camera. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] looking at the camera posing for [MASK] photo [MASK] his arm around [MASK] woman who [MASK] looking away. [MASK] the man [MASK] looking at the camera. [MASK]"
+    },
+    {
+        "original": "[CLS] a white man taking a photo in front of water. [SEP] a man is using the restroom. [SEP]",
+        "masked": "[CLS] [MASK] white man taking [MASK] photo [MASK] front [MASK] water. [MASK] [MASK] man [MASK] using the restroom. [MASK]"
+    },
+    {
+        "original": "[CLS] a squirrel stands on its hind legs in the grass at the edge of a road. [SEP] a squirrel is situated in an upright position near the road. [SEP]",
+        "masked": "[CLS] [MASK] squirrel stands [MASK] its hind legs [MASK] the grass at the edge [MASK] [MASK] road. [MASK] [MASK] squirrel [MASK] situated [MASK] [MASK] upright position near the road. [MASK]"
+    },
+    {
+        "original": "[CLS] two men riding a boat in clear water on a sunny day. [SEP] two men sit in the snow and smoke. [SEP]",
+        "masked": "[CLS] [MASK] men riding [MASK] boat [MASK] clear water [MASK] [MASK] sunny day. [MASK] [MASK] men sit [MASK] the snow [MASK] smoke. [MASK]"
+    },
+    {
+        "original": "[CLS] a little girl carries a younger girl on the sidewalk. [SEP] the girls are sister [SEP]",
+        "masked": "[CLS] [MASK] little girl carries [MASK] younger girl [MASK] the sidewalk. [MASK] the girls [MASK] sister [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a denim jacket and jeans welds on a bridge above water while wearing his safety mask. [SEP] the man in jeans is standing on a bridge working on a outside while listening to music. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] denim jacket [MASK] jeans weld [MASK] [MASK] [MASK] bridge above water while wearing his safety mask. [MASK] the man [MASK] jeans [MASK] standing [MASK] [MASK] bridge working [MASK] [MASK] outside while listening to music. [MASK]"
+    },
+    {
+        "original": "[CLS] four women standing around a yellow table are looking at laptops. [SEP] a group of men looking at fishing poles. [SEP]",
+        "masked": "[CLS] four women standing around [MASK] yellow table [MASK] looking at laptop [MASK]. [MASK] [MASK] group [MASK] men looking at fishing poles. [MASK]"
+    },
+    {
+        "original": "[CLS] a patient is being worked on by doctors and nurses. [SEP] someone is at the doctor. [SEP]",
+        "masked": "[CLS] [MASK] patient [MASK] being worked [MASK] [MASK] doctors [MASK] nurses. [MASK] someone [MASK] at the doctor. [MASK]"
+    },
+    {
+        "original": "[CLS] a snowboarder wearing a green hat is riding along a metal railing. [SEP] a snowboarder in a green hat rides along a metal railing in a competition. [SEP]",
+        "masked": "[CLS] [MASK] snowboarder wearing [MASK] green hat [MASK] riding along [MASK] metal railing. [MASK] [MASK] snowboarder [MASK] [MASK] green hat rides along [MASK] metal railing [MASK] [MASK] competition. [MASK]"
+    },
+    {
+        "original": "[CLS] a mother and daughter walk along the side of a bridge. [SEP] a mother and daughter are walking. [SEP]",
+        "masked": "[CLS] [MASK] mother [MASK] daughter walk along the side [MASK] [MASK] bridge. [MASK] [MASK] mother [MASK] daughter [MASK] walking. [MASK]"
+    },
+    {
+        "original": "[CLS] topless girl riding a red bike. [SEP] the woman is tall. [SEP]",
+        "masked": "[CLS] topless girl riding [MASK] red bike. [MASK] the woman [MASK] tall. [MASK]"
+    },
+    {
+        "original": "[CLS] a man in a blue shirt touches his head while talking to two women outdoors. [SEP] three people talk [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] [MASK] blue shirt touches his head while talking to [MASK] women outdoors. [MASK] three people talk [MASK]"
+    },
+    {
+        "original": "[CLS] two men walking in summer attire. [SEP] two men are walking. [SEP]",
+        "masked": "[CLS] [MASK] men walking [MASK] summer attire. [MASK] [MASK] men [MASK] walking. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of people watch a breakdancer in a red jacket do a one - handed trick. [SEP] a person is doing tricks in front of crowd. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] people watch [MASK] breakdancer [MASK] [MASK] red jacket do [MASK] one [MASK] handed trick. [MASK] [MASK] person [MASK] doing tricks [MASK] front [MASK] crowd. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of chinese people sitting and laying down together on what appears to be a front porch. [SEP] a group of african american people are eating dinner at kfc. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] chinese people sitting [MASK] laying down together [MASK] what appears to be [MASK] front porch. [MASK] [MASK] group [MASK] african american people [MASK] eating dinner at kfc. [MASK]"
+    },
+    {
+        "original": "[CLS] cheerleaders in blue performing on a football field underneath a yellow football goal post. [SEP] a group of people dance outdoors. [SEP]",
+        "masked": "[CLS] cheerleader [MASK] [MASK] blue performing [MASK] [MASK] football field underneath [MASK] yellow football goal post. [MASK] [MASK] group [MASK] people dance outdoors. [MASK]"
+    },
+    {
+        "original": "[CLS] a mass of people looking and moving in the same general direction. [SEP] a few people walked in random directions. [SEP]",
+        "masked": "[CLS] [MASK] mass [MASK] people looking [MASK] moving [MASK] the same general direction. [MASK] [MASK] few people walked [MASK] random directions. [MASK]"
+    },
+    {
+        "original": "[CLS] a man is renovating a room. [SEP] a man is in a room. [SEP]",
+        "masked": "[CLS] [MASK] man [MASK] renovating [MASK] room. [MASK] [MASK] man [MASK] [MASK] [MASK] room. [MASK]"
+    },
+    {
+        "original": "[CLS] a man has wrecked his racing bike in the dirt with five spectators behind a rope. [SEP] a man has damaged something. [SEP]",
+        "masked": "[CLS] [MASK] man has wrecked his racing bike [MASK] the dirt [MASK] five spectators behind [MASK] rope. [MASK] [MASK] man has damaged something. [MASK]"
+    },
+    {
+        "original": "[CLS] a blond boy stands among people in a shady setting with a large snake wrapped around his chest. [SEP] a blond boy is sleeping in bed at home. [SEP]",
+        "masked": "[CLS] [MASK] blond boy stands among people [MASK] [MASK] shady setting [MASK] [MASK] large snake wrapped around his chest. [MASK] [MASK] blond boy [MASK] sleeping [MASK] bed at home. [MASK]"
+    },
+    {
+        "original": "[CLS] a women's volleyball team plays in a brown and green gymnasium. [SEP] a volleyball team is performing in a national competition. [SEP]",
+        "masked": "[CLS] [MASK] women's volleyball team plays [MASK] [MASK] brown [MASK] green gymnasium. [MASK] [MASK] volleyball team [MASK] performing [MASK] [MASK] national competition. [MASK]"
+    },
+    {
+        "original": "[CLS] two guys sit on opposite sides of a strange billboard. [SEP] the two guys are workers working on the billboard taking a break. [SEP]",
+        "masked": "[CLS] [MASK] guys sit [MASK] opposite sides [MASK] [MASK] strange billboard. [MASK] the [MASK] guys [MASK] workers working [MASK] the billboard taking [MASK] break. [MASK]"
+    },
+    {
+        "original": "[CLS] a person wearing a blue backpack stands on a field above a scenic view. [SEP] the person is indoors. [SEP]",
+        "masked": "[CLS] [MASK] person wearing [MASK] blue backpack stands [MASK] [MASK] field above [MASK] scenic view. [MASK] the person [MASK] indoors. [MASK]"
+    },
+    {
+        "original": "[CLS] three girls are standing and talking to each other. [SEP] three girls are laughing [SEP]",
+        "masked": "[CLS] three girls [MASK] standing [MASK] talking to each other. [MASK] three girls [MASK] laughing [MASK]"
+    },
+    {
+        "original": "[CLS] a woman tired from her long day takes a nap on her bed above the sheets and covers. [SEP] a lady is lying in bed. [SEP]",
+        "masked": "[CLS] [MASK] woman tired from her long day takes [MASK] nap [MASK] her bed above the sheets [MASK] covers. [MASK] [MASK] lady [MASK] lying [MASK] bed. [MASK]"
+    },
+    {
+        "original": "[CLS] the man in the brown shirt is holding the hand of the long - haired child in front of a painting. [SEP] a dad and his kid is fishing in the middle of the pacific ocean. [SEP]",
+        "masked": "[CLS] the man [MASK] the brown shirt [MASK] holding the hand [MASK] the long [MASK] haired child [MASK] front [MASK] [MASK] painting. [MASK] [MASK] dad [MASK] his kid [MASK] fishing [MASK] the middle [MASK] the pacific ocean. [MASK]"
+    },
+    {
+        "original": "[CLS] a young woman stands by a barbecue. [SEP] the young woman is preparing the meat to cook on the barbecue. [SEP]",
+        "masked": "[CLS] [MASK] young woman stands [MASK] [MASK] barbecue. [MASK] the young woman [MASK] preparing the meat to cook [MASK] the barbecue. [MASK]"
+    },
+    {
+        "original": "[CLS] a group of runners are running towards two identical skyscrapers. [SEP] the runners are competing in a marathon. [SEP]",
+        "masked": "[CLS] [MASK] group [MASK] runners [MASK] running towards [MASK] identical skyscraper [MASK]. [MASK] the runners [MASK] competing [MASK] [MASK] marathon. [MASK]"
+    },
+    {
+        "original": "[CLS] a man sits writing at a table set up on a sidewalk. [SEP] a man sits outside. [SEP]",
+        "masked": "[CLS] [MASK] man sits writing at [MASK] table set up [MASK] [MASK] sidewalk. [MASK] [MASK] man sits outside. [MASK]"
+    },
+    {
+        "original": "[CLS] this person is walking down the street and talking on their cellphone on a windy day. [SEP] the person is suddenly picked up by a strong gust of wind and slammed into the side of a building. [SEP]",
+        "masked": "[CLS] [MASK] person [MASK] walking down the street [MASK] talking [MASK] their cellphone [MASK] [MASK] windy day. [MASK] the person [MASK] suddenly picked up [MASK] [MASK] strong gust [MASK] wind [MASK] slammed into the side [MASK] [MASK] building. [MASK]"
+    },
+    {
+        "original": "[CLS] three kids in a forest standing on a tree log. [SEP] children crossing stream in forest. [SEP]",
+        "masked": "[CLS] three kids [MASK] [MASK] forest standing [MASK] [MASK] tree log. [MASK] children crossing stream [MASK] forest. [MASK]"
+    },
+    {
+        "original": "[CLS] four women carrying shoulder bags are walking down a city sidewalk. [SEP] four women are shopping for jewelry. [SEP]",
+        "masked": "[CLS] four women carrying shoulder bags [MASK] walking down [MASK] city sidewalk. [MASK] four women [MASK] shopping for jewelry. [MASK]"
+    },
+    {
+        "original": "[CLS] the young man is sitting on a couch smoking a cigarette. [SEP] a young man smoking a cigar [SEP]",
+        "masked": "[CLS] the young man [MASK] sitting [MASK] [MASK] couch smoking [MASK] cigarette. [MASK] [MASK] young man smoking [MASK] cigar [MASK]"
+    },
+    {
+        "original": "[CLS] a guy with piercings, tattoos and a mohawk is looking at the camera while lounging in a chair. [SEP] a male model with a mohawk, tattoos, and piercings strikes a lazy pose in a lounge chair for the camera. [SEP]",
+        "masked": "[CLS] [MASK] guy [MASK] piercing [MASK] [MASK] tattoos [MASK] [MASK] mohawk [MASK] looking at the camera while lounging [MASK] [MASK] chair. [MASK] [MASK] male model [MASK] [MASK] mohawk [MASK] tattoos [MASK] [MASK] piercing [MASK] strikes [MASK] lazy pose [MASK] [MASK] lounge chair for the camera. [MASK]"
+    },
+    {
+        "original": "[CLS] two men cool off under a waterfall. [SEP] two women are under a waterfall. [SEP]",
+        "masked": "[CLS] [MASK] men cool off under [MASK] waterfall. [MASK] [MASK] women [MASK] under [MASK] waterfall. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman crosses the street with a baby in her arms. [SEP] a woman crosses the street carrying her baby boy. [SEP]",
+        "masked": "[CLS] [MASK] woman crosses the street [MASK] [MASK] baby [MASK] her arms. [MASK] [MASK] woman crosses the street carrying her baby boy. [MASK]"
+    },
+    {
+        "original": "[CLS] a woman in a scarf, laughing, being licked by a dog. [SEP] a woman spends time with her brand new puppy [SEP]",
+        "masked": "[CLS] [MASK] woman [MASK] [MASK] scarf [MASK] laughing [MASK] being licked [MASK] [MASK] dog. [MASK] [MASK] woman spends time [MASK] her brand new puppy [MASK]"
+    },
+    {
+        "original": "[CLS] a bald person in green clothing stands in front of a brick wall. [SEP] a hairy person naps. [SEP]",
+        "masked": "[CLS] [MASK] bald person [MASK] green clothing stands [MASK] front [MASK] [MASK] brick wall. [MASK] [MASK] hairy person nap [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] san fransisco 49ers football field with cheerleaders and a packed stadium. [SEP] a popular football team in california has many fans. [SEP]",
+        "masked": "[CLS] san fransisco 49ers football field [MASK] cheerleader [MASK] [MASK] [MASK] packed stadium. [MASK] [MASK] popular football team [MASK] california has many fans. [MASK]"
+    },
+    {
+        "original": "[CLS] a young blond child eats chocolate cake with his fingers while holding the spoon in their other hand. [SEP] a child has chocolate all over his hand [SEP]",
+        "masked": "[CLS] [MASK] young blond child eats chocolate cake [MASK] his fingers while holding the spoon [MASK] their other hand. [MASK] [MASK] child has chocolate all over his hand [MASK]"
+    },
+    {
+        "original": "[CLS] people at a farmer's market. [SEP] a crowd is at the farmers market. [SEP]",
+        "masked": "[CLS] people at [MASK] farmer's market. [MASK] [MASK] crowd [MASK] at the farmers market. [MASK]"
+    },
+    {
+        "original": "[CLS] three men dressed in suits and ties clasps their raised hands while standing in front of corporate logos. [SEP] the three men are wealthy businessman who own the company's whose logos they are standing in front of. [SEP]",
+        "masked": "[CLS] three men dressed [MASK] suits [MASK] ties clasp [MASK] their raised hands while standing [MASK] front [MASK] corporate logos. [MASK] the three men [MASK] wealthy businessman who own the company's whose logos they [MASK] standing [MASK] front [MASK]. [MASK]"
+    },
+    {
+        "original": "[CLS] a young boy holding a pumpkin in the middle of a pumpkin patch. [SEP] a boy is getting ready to carve his pumpkin. [SEP]",
+        "masked": "[CLS] [MASK] young boy holding [MASK] pumpkin [MASK] the middle [MASK] [MASK] pumpkin patch. [MASK] [MASK] boy [MASK] getting ready to carve his pumpkin. [MASK]"
+    },
+    {
+        "original": "[CLS] women enjoying a game of table tennis. [SEP] women are reading books. [SEP]",
+        "masked": "[CLS] women enjoying [MASK] game [MASK] table tennis. [MASK] women [MASK] reading books. [MASK]"
+    },
+    {
+        "original": "[CLS] several men in black t - shirts and caps are using with metal rods to smash food that's lying on a round table with a hole in the center. [SEP] men dont like their lunch [SEP]",
+        "masked": "[CLS] [MASK] men [MASK] black t [MASK] shirts [MASK] caps [MASK] using [MASK] metal rods to smash food that's lying [MASK] [MASK] round table [MASK] [MASK] hole [MASK] the center. [MASK] men dont like their lunch [MASK]"
+    },
+    {
+        "original": "[CLS] a black and white picture of a city street with a food vendor in the foreground. [SEP] the food vendor is selling hot dogs. [SEP]",
+        "masked": "[CLS] [MASK] black [MASK] white picture [MASK] [MASK] city street [MASK] [MASK] food vendor [MASK] the foreground. [MASK] the food vendor [MASK] selling hot dogs. [MASK]"
+    },
+    {
+        "original": "[CLS] a young woman cooks a meal in a wok while conversing with another woman, as an illuminated shrine to mr. t looks on. [SEP] a young chef teaches her sister how to prepare a recipe. [SEP]",
+        "masked": "[CLS] [MASK] young woman cooks [MASK] meal [MASK] [MASK] wok while conversing [MASK] another woman [MASK] [MASK] [MASK] illuminated shrine to mr. t looks [MASK]. [MASK] [MASK] young chef teaches her sister how to prepare [MASK] recipe. [MASK]"
+    },
+    {
+        "original": "[CLS] a black mother in an orange dress with her two little boys and husband at an outdoor market stand. [SEP] a black family selling fresh produce in an outdoor market [SEP]",
+        "masked": "[CLS] [MASK] black mother [MASK] [MASK] orange dress [MASK] her [MASK] little boys [MASK] husband at [MASK] outdoor market stand. [MASK] [MASK] black family selling fresh produce [MASK] [MASK] outdoor market [MASK]"
+    },
+    {
+        "original": "[CLS] little girl is flipping an omelet in the kitchen. [SEP] a young girl in the kitchen makes spicy omelets. [SEP]",
+        "masked": "[CLS] little girl [MASK] flipping [MASK] omelet [MASK] the kitchen. [MASK] [MASK] young girl [MASK] the kitchen makes spicy omelets. [MASK]"
+    },
+    {
+        "original": "[CLS] the man in black is flying off the full in front of a red fence. [SEP] the man wearing black pants and a black jacket is in front of the fence. [SEP]",
+        "masked": "[CLS] the man [MASK] black [MASK] flying off the full [MASK] front [MASK] [MASK] red fence. [MASK] the man wearing black pants [MASK] [MASK] black jacket [MASK] [MASK] front [MASK] the fence. [MASK]"
+    },
+    {
+        "original": "[CLS] three men in soldier dress and helmets stand with guns outside of a building. [SEP] there are people patiently awaiting a firefight. [SEP]",
+        "masked": "[CLS] three men [MASK] soldier dress [MASK] helmets stand [MASK] guns outside [MASK] [MASK] building. [MASK] there [MASK] people patiently awaiting [MASK] firefight. [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a business suit holds up a drink as the other laughs. [SEP] a man drinking with others [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] business suit holds up [MASK] drink [MASK] the other laughs. [MASK] [MASK] man drinking [MASK] others [MASK]"
+    },
+    {
+        "original": "[CLS] a man standing alone in a park. [SEP] a man alone in the park [SEP]",
+        "masked": "[CLS] [MASK] man standing alone [MASK] [MASK] park. [MASK] [MASK] man alone [MASK] the park [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a brown shirt and backpack is pushing a stroller while a small toddler is walking along aside him on a rain - covered street. [SEP] the toddler is wearing rain boots. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] brown shirt [MASK] backpack [MASK] pushing [MASK] stroller while [MASK] small toddler [MASK] walking along aside him [MASK] [MASK] rain [MASK] covered street. [MASK] the toddler [MASK] wearing rain boots. [MASK]"
+    },
+    {
+        "original": "[CLS] a young teenage boy in a blue and white striped coat gives a weak smile while walking with four other girls. [SEP] the boy is flying a plane [SEP]",
+        "masked": "[CLS] [MASK] young teenage boy [MASK] [MASK] blue [MASK] white striped coat gives [MASK] weak smile while walking [MASK] four other girls. [MASK] the boy [MASK] flying [MASK] plane [MASK]"
+    },
+    {
+        "original": "[CLS] a man wearing a black jacket stands next to a body of water. [SEP] the man is swimming in the water. [SEP]",
+        "masked": "[CLS] [MASK] man wearing [MASK] black jacket stands next to [MASK] body [MASK] water. [MASK] the man [MASK] swimming [MASK] the water. [MASK]"
+    },
+    {
+        "original": "[CLS] a sculptor wearing yellow headphones is cutting stone. [SEP] the man is sculpting a piece of art. [SEP]",
+        "masked": "[CLS] [MASK] sculptor wearing yellow headphones [MASK] cutting stone. [MASK] the man [MASK] sculpting [MASK] piece [MASK] art. [MASK]"
+    },
+    {
+        "original": "[CLS] two young boys are playing with a toy train set on a wood floor. [SEP] two girls are playing with dolls. [SEP]",
+        "masked": "[CLS] [MASK] young boys [MASK] playing [MASK] [MASK] toy train set [MASK] [MASK] wood floor. [MASK] [MASK] girls [MASK] playing [MASK] dolls. [MASK]"
+    },
+    {
+        "original": "[CLS] people stand along a train track and take pictures. [SEP] some people are walking to the train station. [SEP]",
+        "masked": "[CLS] people stand along [MASK] train track [MASK] take pictures. [MASK] some people [MASK] walking to the train station. [MASK]"
+    },
+    {
+        "original": "[CLS] elderly woman climbing up the stairs. [SEP] the old lady was walking. [SEP]",
+        "masked": "[CLS] elderly woman climbing up the stairs. [MASK] the old lady was walking. [MASK]"
+    },
+    {
+        "original": "[CLS] a boy plays basketball. [SEP] a boy is playing football. [SEP]",
+        "masked": "[CLS] [MASK] boy plays basketball. [MASK] [MASK] boy [MASK] playing football. [MASK]"
+    },
+    {
+        "original": "[CLS] a member of the army is walking with a german shepard while the dog has something in has mouth. [SEP] a member of the army walks his dog. [SEP]",
+        "masked": "[CLS] [MASK] member [MASK] the army [MASK] walking [MASK] [MASK] german shepard while the dog has something [MASK] has mouth. [MASK] [MASK] member [MASK] the army walks his dog. [MASK]"
+    },
+    {
+        "original": "[CLS] a young smiling girl is holding a stuffed animal in one hand and a candy apple in the other. [SEP] a young smiling girl is holding a cute stuffed animal in one hand [SEP]",
+        "masked": "[CLS] [MASK] young smiling girl [MASK] holding [MASK] stuffed animal [MASK] one hand [MASK] [MASK] candy apple [MASK] the other. [MASK] [MASK] young smiling girl [MASK] holding [MASK] cute stuffed animal [MASK] one hand [MASK]"
+    }
+]

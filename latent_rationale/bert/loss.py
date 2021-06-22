@@ -15,7 +15,8 @@ class RationaleLoss(nn.Module):
                  lambda_init: float = 0.01,
                  lambda_min: float = 1e-12,
                  lambda_max: float = 5.,
-                 lambda_sparsity: float = 0.1
+                 lambda_sparsity: float = 0.1,
+                 lambda_lasso: float = 0.5
                  ):
         super().__init__()
         self.criterion = nn.CrossEntropyLoss()
@@ -31,6 +32,7 @@ class RationaleLoss(nn.Module):
         self.lambda_max = lambda_max
 
         self.lambda_sparsity = lambda_sparsity
+        self.lambda_lasso = lambda_lasso
 
         # lagrange buffers
         self.register_buffer('lambda0', torch.full((1,), lambda_init))
@@ -133,7 +135,6 @@ class RationaleLoss(nn.Module):
         # L0 regularizer (sparsity constraint)
         # pre-compute for regularizers: pdf(0.)
         l0, pdf0, pdf_nonzero = self._l0_regularize(z_dists, mask)
-
         c0_hat, c0 = self._l0_relax(l0)
         # c0 = l0
 
@@ -169,9 +170,10 @@ class RationaleLoss(nn.Module):
             optional["lambda1"] = self.lambda1.item()
             optional["lagrangian1"] = (self.lambda1 * c1_hat).item()
 
-        lambda1 = self.lambda1.squeeze().detach()
+        # lambda1 = self.lambda1.squeeze().detach()
         # FIXME
-        # loss += lambda1 * c1.squeeze()
+        # loss += self.lambda_sparsity * c1.squeeze()
+        loss += self.lambda_lasso * lasso_cost.squeeze()
         # loss += LAMBDA_TEST * c1.squeeze()
         optional["no_ce"] = loss - optional["ce"]
         return loss, optional

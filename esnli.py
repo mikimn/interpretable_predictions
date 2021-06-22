@@ -42,6 +42,7 @@ class Arguments:
         'choices': ['independent', 'contextual']
     })
     lambda_init: float = field(default=0.1)
+    lambda_lasso: float = field(default=0.25)
     config_dir: str = field(default='configs')
     logging_dir: str = field(default='outputs')
     override_dataset: bool = False
@@ -176,6 +177,7 @@ def main(config: Arguments):
     rationale_type = config.rationale_type
     rationale_strategy = config.rationale_strategy
     lambda_init = config.lambda_init
+    lambda_lasso = config.lambda_lasso
     dataset_directory = join(_DIR, f'data/esnli_{rationale_type}')
     should_load_dataset = isdir(dataset_directory) and not override_dataset
 
@@ -226,6 +228,7 @@ def main(config: Arguments):
     bert_config.rationale_type = rationale_type
     bert_config.rationale_strategy = rationale_strategy
     bert_config.lambda_init = lambda_init
+    bert_config.lambda_lasso = lambda_lasso
     bert_config.highlight_token = tokenizer.encode('*', add_special_tokens=False)[0]
     model = BertWithRationaleForSequenceClassification.from_pretrained(model_name_or_path, config=bert_config)
 

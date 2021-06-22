@@ -274,6 +274,8 @@ def rationale_precision_or_recall(input_ids, z, h1, h2, flag_id, flag_token='*',
     # z:
     # [CLS] p1 p2 ... pt [SEP] h1 h2 ... pm [SEP]
     prec_list = []
+    if h1 is None or h2 is None:
+        return -1
     for inp, z_pred, premise_highlight, hypothesis_highlight in zip(input_ids, z, h1, h2):
         z_pred = z_pred.cpu().detach().numpy()
         z_ref = [0]  # Start [CLS] is assumed unmasked
@@ -323,11 +325,14 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
         super().__init__(config)
         self.num_labels = config.num_labels
         self.config = config
+        self.config.keys_to_ignore_at_inference = ['precision', 'recall']
 
         self.bert = BertModelWithRationale(config)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
-        self.rationale_loss = RationaleLoss(selection=1., lambda_sparsity=config.lambda_init)
+        self.rationale_loss = RationaleLoss(selection=1.,
+                                            lambda_sparsity=config.lambda_init,
+                                            lambda_lasso=config.lambda_lasso)
         self.mask_metrics = None
         self.mask_metrics_count = 0
 

@@ -181,7 +181,7 @@ def main(config: Arguments):
     dataset_directory = join(_DIR, f'data/esnli_{rationale_type}')
     should_load_dataset = isdir(dataset_directory) and not override_dataset
 
-    test_dataset_names = [('hans', 'validation')]
+    test_dataset_names = [('hans', 'validation'), ('dataset/snli_hard.py', 'test')]
 
     # For reproducibility
     set_seed(seed)

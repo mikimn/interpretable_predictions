@@ -1,12 +1,14 @@
 import json
+from os.path import join, isdir, dirname, realpath
 
-from torch.utils.data import DataLoader
-
-from esnli import *
 import torch
+from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+from esnli import *
 from latent_rationale.bert.bert_with_mask import RationaleSequenceClassifierOutput
+
+_DIR = dirname(realpath(__file__))
 
 
 @dataclass
@@ -18,11 +20,12 @@ class Arguments:
 
 def get_samples(inputs: dict, output: RationaleSequenceClassifierOutput):
     batch_input_ids = inputs['input_ids']
+    batch_labels = inputs['labels']
     batch_attention_mask = inputs['attention_mask']
     masks = output.z
     assert batch_input_ids.size(0) == masks.size(0)
     result = []
-    for input_ids, attention_mask, mask in zip(batch_input_ids, batch_attention_mask, masks):
+    for input_ids, label, attention_mask, mask in zip(batch_input_ids, batch_labels, batch_attention_mask, masks):
         assert attention_mask.size() == input_ids.size()
         mask[mask < 0.5] = 0
         mask[mask >= 0.5] = 1
@@ -36,8 +39,19 @@ def get_samples(inputs: dict, output: RationaleSequenceClassifierOutput):
         masked = tokenizer.decode(masked_ids[attention_mask == 1])
         result.append({
             'original': tokenizer.decode(input_ids[attention_mask == 1]),
-            'masked': masked
+            'masked': masked,
+            'label': ['entailment', 'neutral', 'contradiction'][label]
         })
+    return result
+
+
+max_seq_length = 128
+
+
+def preprocess_function(examples):
+    # Tokenize the texts
+    args = (examples['premise'], examples['hypothesis'])
+    result = tokenizer(*args, max_length=max_seq_length, truncation=True, return_length=True)
     return result
 
 
@@ -50,11 +64,30 @@ def main(args: Arguments):
             **{k: v for k, v in x.items() if isinstance(v, list)}
         }
 
-    model = BertWithRationaleForSequenceClassification.from_pretrained(args.model_name_or_path)
+    model_name_or_path = args.model_name_or_path
+    model = BertWithRationaleForSequenceClassification.from_pretrained(model_name_or_path)
     model = model.eval().to(device)
 
-    ds = load_from_disk('data/esnli_all')
-    test_dataset = ds['test']
+    # # Hard Subset
+    # predictions_file_name = 'masked_examples_hard.json'
+    # dataset_name = 'latent_rationale/dataset/snli_hard.py'
+    # dataset_directory = join(_DIR, f'data/snli_hard')
+    # dataset_tag = 'test'
+
+    # eSNLI
+    predictions_file_name = 'masked_examples.json'
+    dataset_name = 'latent_rationale/esnli/esnli_dataset.py'
+    dataset_directory = join(_DIR, f'data/esnli_all')
+    dataset_tag = 'test'
+
+    if not isdir(dataset_directory):
+        # ds = load_from_disk('data/esnli_all')
+        ds = load_dataset(dataset_name)
+        ds = ds.map(preprocess_function, batched=True, load_from_cache_file=True)
+    else:
+        ds = load_from_disk(dataset_directory)
+
+    test_dataset = ds[dataset_tag]
     print(test_dataset[0])
     test_dl = DataLoader(test_dataset, batch_size=32, collate_fn=Collator(tokenizer), shuffle=True)
 
@@ -62,25 +95,48 @@ def main(args: Arguments):
     recall = 0
     count = 0
     samples = []
+    all_overlap = 0
+    all_overlap_hypothesis = 0
+    all_overlap_premise = 0
     with torch.no_grad():
         for i, batch in tqdm(enumerate(test_dl)):
             inputs = prepare(batch)
             model = model.eval()
-            output = model(**inputs, aggregate_mask_metrics=False)
-            precision += output.precision
-            recall += output.recall
+            output: RationaleSequenceClassifierOutput = model(**inputs, aggregate_mask_metrics=False)
+            if output.precision:
+                precision += output.precision
+            if output.recall:
+                recall += output.recall
+
+            z_mask = output.z  # [B, T]
+            attention_mask = inputs['attention_mask']
+            hypothesis_mask = inputs['token_type_ids']  # [B, T]
+            premise_mask = attention_mask - hypothesis_mask  # [B, T]
+            lengths = attention_mask.sum(-1)  # [B]
+            hypothesis_lengths = hypothesis_mask.sum(-1)  # [B]
+            premise_lengths = premise_mask.sum(-1)  # [B]
+            all_overlap += (z_mask.sum(-1) / lengths).mean()
+            all_overlap_hypothesis += ((hypothesis_mask * z_mask).sum(-1) / hypothesis_lengths).mean()
+            all_overlap_premise += ((premise_mask * z_mask).sum(-1) / premise_lengths).mean()
+
             count += 1
             if args.generate_predictions:
                 if i < 10:
                     samples += get_samples(inputs, output)
                 elif i == 10:
-                    with open('masked_examples.json', 'w+') as f:
+                    with open(join(model_name_or_path, predictions_file_name), 'w+') as f:
                         json.dump(samples, f, indent=4, ensure_ascii=False)
 
+    all_overlap /= count
+    all_overlap_hypothesis /= count
+    all_overlap_premise /= count
     precision /= count
     recall /= count
     print(f'Precision: {precision}')
     print(f'Recall: {recall}')
+    print(f'Selected: {all_overlap}')
+    print(f'Hypothesis Selected: {all_overlap_hypothesis}')
+    print(f'Premise Selected: {all_overlap_premise}')
 
     f1 = 2 * (precision * recall) / (precision + recall)
     print(f'F1 = {f1}')

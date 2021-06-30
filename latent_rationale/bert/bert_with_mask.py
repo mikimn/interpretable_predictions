@@ -7,7 +7,7 @@ from transformers import BertConfig, is_wandb_available
 from transformers.modeling_outputs import SequenceClassifierOutput, BaseModelOutputWithPoolingAndCrossAttentions, \
     BaseModelOutputWithPastAndCrossAttentions
 from transformers.models.bert import BertPreTrainedModel
-from transformers.models.bert.modeling_bert import BertEmbeddings, BertEncoder, BertPooler
+from transformers.models.bert.modeling_bert import BertEmbeddings, BertEncoder, BertPooler, BertLayer
 
 from .loss import RationaleLoss
 from ..common.util import get_z_stats
@@ -31,40 +31,19 @@ class RationaleSequenceClassifierOutput(SequenceClassifierOutput):
     recall: float = None
 
 
-class BertModelWithRationale(BertPreTrainedModel):
-    """
+@dataclass
+class BaseRationaleModelOutputWithPastAndCrossAttentions(BaseModelOutputWithPastAndCrossAttentions):
+    z_mask: torch.Tensor = None
+    z_dist: RV = None
 
-    The model can behave as an encoder (with only self-attention) as well as a decoder, in which case a layer of
-    cross-attention is added between the self-attention layers, following the architecture described in `Attention is
-    all you need <https://arxiv.org/abs/1706.03762>`__ by Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit,
-    Llion Jones, Aidan N. Gomez, Lukasz Kaiser and Illia Polosukhin.
 
-    To behave as an decoder the model needs to be initialized with the :obj:`is_decoder` argument of the configuration
-    set to :obj:`True`. To be used in a Seq2Seq model, the model needs to initialized with both :obj:`is_decoder`
-    argument and :obj:`add_cross_attention` set to :obj:`True`; an :obj:`encoder_hidden_states` is then expected as an
-    input to the forward pass.
-    """
-
-    def __init__(self, config: BertConfig, add_pooling_layer=True):
-        super().__init__(config)
+class BertEncoderWithRationale(nn.Module):
+    def __init__(self, config):
+        super().__init__()
         self.config = config
-
-        self.embeddings = BertEmbeddings(config)
-        # TODO: Added by @mikimn
+        self.mask_before_layer = getattr(config, 'mask_before_layer', 1)
+        self.layer = nn.ModuleList([BertLayer(config) for _ in range(config.num_hidden_layers)])
         self.z_layer = KumaGate(config.hidden_size)
-        self.encoder = BertEncoder(config)
-
-        self.pooler = BertPooler(config) if add_pooling_layer else None
-        self.rationale_type = config.rationale_type
-        assert self.rationale_type in {'all', 'premise', 'hypothesis', 'none', 'supervised'}
-        config_dict = config.to_dict()
-        if 'rationale_strategy' in config_dict:
-            self.rationale_strategy = config.rationale_strategy
-        else:
-            self.rationale_strategy = 'independent'
-        assert self.rationale_strategy in {'independent', 'contextual'}
-
-        self.init_weights()
 
     def _forward_z_layer_independent(self, z_dist, embeddings, mask=None):
         h = embeddings
@@ -87,8 +66,163 @@ class BertModelWithRationale(BertPreTrainedModel):
 
         self.z = z  # [B, T]
         self.z_dists = [z_dist]
-
         return z
+
+    def _forward_mask(self, embedding_output, attention_mask, rationale_mask):
+        z_dist = None
+        if rationale_mask is not None and rationale_mask.sum() != 0:
+            z_dist = self.z_layer(embedding_output)
+            z = self._forward_z_layer_independent(z_dist, embedding_output, rationale_mask)
+            # print('Z = ', z.size())
+            # print('attention_mask = ', attention_mask.size())
+            # Ignore padding
+            z_mask = (attention_mask.float() * z).unsqueeze(-1)  # [B, T, 1]
+            # print(z_mask.size())
+            # print(embedding_output.size())
+            # z_mask = z_mask.clamp(min=0.0, max=1.0)
+            # TODO Split attention mask and rationale mask
+            # [B, T, H] x [B, T, 1] -> [B, T, H]
+            embedding_output = embedding_output * z_mask
+            z_mask = z_mask.squeeze(-1)
+        else:
+            z_mask = torch.ones_like(attention_mask)
+
+        return z_dist, z_mask, embedding_output
+
+    def forward(
+            self,
+            hidden_states,
+            original_attention_mask=None,
+            attention_mask=None,
+            head_mask=None,
+            encoder_hidden_states=None,
+            encoder_attention_mask=None,
+            past_key_values=None,
+            use_cache=None,
+            output_attentions=False,
+            output_hidden_states=False,
+            return_dict=True,
+            rationale_mask=None
+    ):
+        all_hidden_states = () if output_hidden_states else None
+        all_self_attentions = () if output_attentions else None
+        all_cross_attentions = () if output_attentions and self.config.add_cross_attention else None
+
+        next_decoder_cache = () if use_cache else None
+        z_dist, z_mask = None, None
+        for i, layer_module in enumerate(self.layer):
+            if i == self.mask_before_layer:
+                # hidden_states [B, S, H]
+                # print('BEFORE:', hidden_states.size())
+                # print(attention_mask.size())
+                # print(rationale_mask.size())
+                z_dist, z_mask, hidden_states = self._forward_mask(hidden_states, original_attention_mask, rationale_mask)
+                # print('AFTER:', hidden_states.size())
+
+            if output_hidden_states:
+                all_hidden_states = all_hidden_states + (hidden_states,)
+
+            layer_head_mask = head_mask[i] if head_mask is not None else None
+            past_key_value = past_key_values[i] if past_key_values is not None else None
+
+            if getattr(self.config, "gradient_checkpointing", False) and self.training:
+                # if use_cache:
+                #     logger.warn(
+                #         "`use_cache=True` is incompatible with `config.gradient_checkpointing=True`. Setting "
+                #         "`use_cache=False`..."
+                #     )
+                #     use_cache = False
+
+                def create_custom_forward(module):
+                    def custom_forward(*inputs):
+                        return module(*inputs, past_key_value, output_attentions)
+
+                    return custom_forward
+
+                layer_outputs = torch.utils.checkpoint.checkpoint(
+                    create_custom_forward(layer_module),
+                    hidden_states,
+                    attention_mask,
+                    layer_head_mask,
+                    encoder_hidden_states,
+                    encoder_attention_mask,
+                )
+            else:
+                layer_outputs = layer_module(
+                    hidden_states,
+                    attention_mask,
+                    layer_head_mask,
+                    encoder_hidden_states,
+                    encoder_attention_mask,
+                    past_key_value,
+                    output_attentions,
+                )
+
+            hidden_states = layer_outputs[0]
+            if use_cache:
+                next_decoder_cache += (layer_outputs[-1],)
+            if output_attentions:
+                all_self_attentions = all_self_attentions + (layer_outputs[1],)
+                if self.config.add_cross_attention:
+                    all_cross_attentions = all_cross_attentions + (layer_outputs[2],)
+
+        if output_hidden_states:
+            all_hidden_states = all_hidden_states + (hidden_states,)
+
+        if not return_dict:
+            return tuple(
+                v
+                for v in [
+                    hidden_states,
+                    next_decoder_cache,
+                    all_hidden_states,
+                    all_self_attentions,
+                    all_cross_attentions,
+                    z_mask,
+                    z_dist
+                ]
+                if v is not None
+            )
+        return BaseRationaleModelOutputWithPastAndCrossAttentions(
+            last_hidden_state=hidden_states,
+            past_key_values=next_decoder_cache,
+            hidden_states=all_hidden_states,
+            attentions=all_self_attentions,
+            cross_attentions=all_cross_attentions,
+            z_mask=z_mask,
+            z_dist=z_dist
+        )
+
+
+class BertModelWithRationale(BertPreTrainedModel):
+    """
+
+    The model can behave as an encoder (with only self-attention) as well as a decoder, in which case a layer of
+    cross-attention is added between the self-attention layers, following the architecture described in `Attention is
+    all you need <https://arxiv.org/abs/1706.03762>`__ by Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit,
+    Llion Jones, Aidan N. Gomez, Lukasz Kaiser and Illia Polosukhin.
+
+    To behave as an decoder the model needs to be initialized with the :obj:`is_decoder` argument of the configuration
+    set to :obj:`True`. To be used in a Seq2Seq model, the model needs to initialized with both :obj:`is_decoder`
+    argument and :obj:`add_cross_attention` set to :obj:`True`; an :obj:`encoder_hidden_states` is then expected as an
+    input to the forward pass.
+    """
+
+    def __init__(self, config: BertConfig, add_pooling_layer=True):
+        super().__init__(config)
+        self.config = config
+
+        self.embeddings = BertEmbeddings(config)
+        # TODO: Added by @mikimn
+        self.z_layer = KumaGate(config.hidden_size)
+        self.encoder = BertEncoderWithRationale(config)
+
+        self.pooler = BertPooler(config) if add_pooling_layer else None
+        self.rationale_type = getattr(config, 'rationale_type', 'all')
+        assert self.rationale_type in {'all', 'premise', 'hypothesis', 'none', 'supervised'}
+        self.rationale_strategy = getattr(config, 'rationale_strategy', 'independent')
+        self.init_weights()
+        self.z_dists, self.z = None, None
 
     def forward(
             self,
@@ -192,42 +326,21 @@ class BertModelWithRationale(BertPreTrainedModel):
 
         # TODO Added by @mikimn
         # mask = attention_mask
-        fill_mask = None
+        # fill_mask = None
         if rationale_mask is None:
             if self.rationale_type == 'all':
                 rationale_mask = attention_mask  # By default, allow all tokens to be masked
-                fill_mask = torch.zeros_like(rationale_mask)
+                # fill_mask = torch.zeros_like(rationale_mask)
             elif self.rationale_type == 'premise':
                 rationale_mask = attention_mask - token_type_ids  # Mask premise
-                fill_mask = token_type_ids  # Preserve hypothesis
+                # fill_mask = token_type_ids  # Preserve hypothesis
             elif self.rationale_type == 'hypothesis':
                 rationale_mask = token_type_ids  # Mask hypothesis
-                fill_mask = attention_mask - token_type_ids  # Preserve premise
+                # fill_mask = attention_mask - token_type_ids  # Preserve premise
 
-        z_dist = None
-        z = None
-        if rationale_mask is not None and rationale_mask.sum() != 0 and \
-                self.rationale_strategy == 'independent':
-            z_dist = self.z_layer(embedding_output)
-            z = self._forward_z_layer_independent(z_dist, embedding_output, rationale_mask)
-
-            # Ignore padding
-            z_mask = (attention_mask.float() * z).unsqueeze(-1)  # [B, T, 1]
-            # z_mask = z_mask.clamp(min=0.0, max=1.0)
-            # TODO Split attention mask and rationale mask
-            # [B, T, H] x [B, T, 1] -> [B, T, H]
-            embedding_output = embedding_output * z_mask
-            z_mask = z_mask.squeeze(-1)
-        else:
-            z_mask = torch.ones_like(attention_mask)
-
-        # TODO Remove
-        # [B, T, H] x [B, T, 1] => [B, T, H]
-        # Hypothesis-only embedding
-        # embedding_output = embedding_output * token_type_ids.unsqueeze(-1)
-
-        encoder_outputs: BaseModelOutputWithPastAndCrossAttentions = self.encoder(
+        encoder_outputs: BaseRationaleModelOutputWithPastAndCrossAttentions = self.encoder(
             embedding_output,
+            original_attention_mask=attention_mask,
             attention_mask=extended_attention_mask,
             head_mask=head_mask,
             encoder_hidden_states=encoder_hidden_states,
@@ -237,13 +350,22 @@ class BertModelWithRationale(BertPreTrainedModel):
             output_attentions=output_attentions,
             output_hidden_states=output_hidden_states,
             return_dict=return_dict,
+            rationale_mask=rationale_mask
         )
         # [B, T, H]
         sequence_output = encoder_outputs[0]
+        if return_dict:
+            z_mask, z_dist = encoder_outputs.z_mask, encoder_outputs.z_dist
+        else:
+            z_mask, z_dist = encoder_outputs[-2:]
+        # print(z_mask.size())
         pooled_output = self.pooler(sequence_output) if self.pooler is not None else None
 
         if not return_dict:
-            return (sequence_output, pooled_output) + encoder_outputs[1:] + (z, z_dist)
+            return (sequence_output, pooled_output) + encoder_outputs[1:] + (z_mask, z_dist)
+
+        self.z_dists = getattr(self.encoder, 'z_dists', None)
+        self.z = getattr(self.encoder, 'z', None)
 
         return BaseModelOutputWithPoolingCrossAttentionsAndZDist(
             last_hidden_state=sequence_output,
@@ -331,17 +453,12 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
         self.classifier = nn.Linear(config.hidden_size, config.num_labels)
         self.rationale_loss = RationaleLoss(selection=1.,
-                                            lambda_sparsity=config.lambda_init,
-                                            lambda_lasso=config.lambda_lasso)
+                                            lambda_sparsity=getattr(config, 'lambda_init', 0.1),
+                                            lambda_lasso=getattr(config, 'lambda_lasso', 0.01))
         self.mask_metrics = None
         self.mask_metrics_count = 0
 
-        config_dict = config.to_dict()
-        if 'highlight_token' in config_dict:
-            self.highlight_token = config.highlight_token
-        else:
-            self.highlight_token = 1008  # Quickfix (1008 == '*' for BertTokenizer)
-
+        self.highlight_token = getattr(config, 'highlight_token', 1008)  # Quickfix (1008 == '*' for BertTokenizer)
         self.init_weights()
 
     def forward(
@@ -384,7 +501,7 @@ class BertWithRationaleForSequenceClassification(BertPreTrainedModel):
         if return_dict:
             z, z_dist = outputs.z, outputs.z_dist
         else:
-            z, z_dist = outputs[:-2]
+            z, z_dist = outputs[-2:]
 
         pooled_output = outputs[1]
 

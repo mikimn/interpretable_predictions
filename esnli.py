@@ -43,6 +43,7 @@ class Arguments:
     })
     lambda_init: float = field(default=0.1)
     lambda_lasso: float = field(default=0.25)
+    mask_before_layer: int = field(default=0)
     config_dir: str = field(default='configs')
     logging_dir: str = field(default='outputs')
     override_dataset: bool = False
@@ -178,6 +179,7 @@ def main(config: Arguments):
     rationale_strategy = config.rationale_strategy
     lambda_init = config.lambda_init
     lambda_lasso = config.lambda_lasso
+    mask_before_layer = config.mask_before_layer
     dataset_directory = join(_DIR, f'data/esnli_{rationale_type}')
     should_load_dataset = isdir(dataset_directory) and not override_dataset
 
@@ -230,6 +232,7 @@ def main(config: Arguments):
     bert_config.lambda_init = lambda_init
     bert_config.lambda_lasso = lambda_lasso
     bert_config.highlight_token = tokenizer.encode('*', add_special_tokens=False)[0]
+    bert_config.mask_before_layer = mask_before_layer
     model = BertWithRationaleForSequenceClassification.from_pretrained(model_name_or_path, config=bert_config)
 
     report_to_wandb = report_to_wandb and is_wandb_available()

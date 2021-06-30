@@ -35,10 +35,10 @@ class RationaleLoss(nn.Module):
         self.lambda_lasso = lambda_lasso
 
         # lagrange buffers
-        self.register_buffer('lambda0', torch.full((1,), lambda_init))
-        self.register_buffer('lambda1', torch.full((1,), lambda_init))
-        self.register_buffer('c0_ma', torch.full((1,), 0.))  # moving average
-        self.register_buffer('c1_ma', torch.full((1,), 0.))  # moving average
+        # self.register_buffer('lambda0', torch.full((1,), lambda_init))
+        # self.register_buffer('lambda1', torch.full((1,), lambda_init))
+        # self.register_buffer('c0_ma', torch.full((1,), 0.))  # moving average
+        # self.register_buffer('c1_ma', torch.full((1,), 0.))  # moving average
 
     @staticmethod
     def _l0_regularize(z_dists, mask):
@@ -127,7 +127,7 @@ class RationaleLoss(nn.Module):
         # mask: [B, S]
         loss = self.criterion(preds, targets)  # [B, T]
         optional = {
-            "ce": loss
+            "ce": loss.item()
         }
         if z_dists is None:
             return loss, optional
@@ -135,20 +135,20 @@ class RationaleLoss(nn.Module):
         # L0 regularizer (sparsity constraint)
         # pre-compute for regularizers: pdf(0.)
         l0, pdf0, pdf_nonzero = self._l0_regularize(z_dists, mask)
-        c0_hat, c0 = self._l0_relax(l0)
+        # c0_hat, c0 = self._l0_relax(l0)
         # c0 = l0
 
         with torch.no_grad():
             optional["cost0_l0"] = l0.item()
-            optional["target0"] = self.selection
-            optional["c0_hat"] = c0_hat.item()
-            optional["c0"] = c0.item()  # same as moving average
-            optional["lambda0"] = self.lambda0.item()
-            optional["lagrangian0"] = (self.lambda0 * c0_hat).item()
+            # optional["target0"] = self.selection
+            # optional["c0_hat"] = c0_hat.item()
+            # optional["c0"] = c0.item()  # same as moving average
+            # optional["lambda0"] = self.lambda0.item()
+            # optional["lagrangian0"] = (self.lambda0 * c0_hat).item()
             optional["a"] = z_dists[0].a.mean().item()
             optional["b"] = z_dists[0].b.mean().item()
 
-        lambda0 = self.lambda0.squeeze().detach()
+        # lambda0 = self.lambda0.squeeze().detach()
         # print(loss)
         # print(lambda0)
         # print(c0)
@@ -159,21 +159,20 @@ class RationaleLoss(nn.Module):
         # number of transitions per sentence normalized by length
         # TODO Number of transitions per premise/hypothesis??
         lasso_cost = self._l1_regularize(pdf0, pdf_nonzero, mask)
-        c1_hat, c1 = self._l1_relax(lasso_cost)
+        # c1_hat, c1 = self._l1_relax(lasso_cost)
         # c1 = lasso_cost
 
         with torch.no_grad():
             optional["cost1_lasso"] = lasso_cost.item()
-            optional["target1"] = self.lasso
-            optional["c1_hat"] = c1_hat.item()
-            optional["c1"] = c1.item()  # same as moving average
-            optional["lambda1"] = self.lambda1.item()
-            optional["lagrangian1"] = (self.lambda1 * c1_hat).item()
+            # optional["target1"] = self.lasso
+            # optional["c1_hat"] = c1_hat.item()
+            # optional["c1"] = c1.item()  # same as moving average
+            # optional["lambda1"] = self.lambda1.item()
+            # optional["lagrangian1"] = (self.lambda1 * c1_hat).item()
 
         # lambda1 = self.lambda1.squeeze().detach()
         # FIXME
         # loss += self.lambda_sparsity * c1.squeeze()
         loss += self.lambda_lasso * lasso_cost.squeeze()
-        # loss += LAMBDA_TEST * c1.squeeze()
         optional["no_ce"] = loss - optional["ce"]
         return loss, optional
